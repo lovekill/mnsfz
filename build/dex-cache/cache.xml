@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="D:\github\project\mnsfz\build\pre-dexed\debug\AppOffer_2.1.1-49de2413b7835a7e3be6bd9e4203586f0be3c263.jar"
+        jar="D:\github\project\mnsfz\libs\AppOffer_2.1.1.jar"
+        jumboMode="false"
+        revision="19.0.0"
+        sha1="5cca7f6d8ce684a12e854914bf01280fcc0a7c34"/>
+    <item
+        dex="D:\github\project\mnsfz\build\pre-dexed\debug\android-support-v4-5cb4713a5af3098f3657da6b821b4d689b6735ce.jar"
+        jar="D:\github\project\mnsfz\libs\android-support-v4.jar"
+        jumboMode="false"
+        revision="19.0.0"
+        sha1="bd6479f5dd592790607e0504e66e0f31c2b4d308"/>
+    <item
+        dex="D:\github\project\mnsfz\build\pre-dexed\debug\jsoup-1.7.2-3e07eebef87c279c2b5aff4ffa51d886796fa026.jar"
+        jar="D:\github\project\mnsfz\libs\jsoup-1.7.2.jar"
+        jumboMode="false"
+        revision="19.0.0"
+        sha1="872693211fd68d1c4e116cf90021603207725e19"/>
+
+</pre-dex-items>
