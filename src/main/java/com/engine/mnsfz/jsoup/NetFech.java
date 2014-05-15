@@ -1,5 +1,7 @@
 package com.engine.mnsfz.jsoup;
 
+import com.engine.mnsfz.greendao.DaoMaster;
+import com.engine.mnsfz.greendao.PersonImage;
 import com.engine.mnsfz.util.LogUtil;
 
 import org.jsoup.Jsoup;
@@ -75,6 +77,16 @@ public class NetFech {
             bean.setSrc(img.attr("src"));
             list.add(bean);
         }
+        List<PersonImage> l = new ArrayList<PersonImage>() ;
+        for (int i = 0; i < list.size(); i++) {
+            IndexBean bean = list.get(i) ;
+            PersonImage image = new PersonImage() ;
+            image.setHref(bean.getHref());
+            image.setTitle(bean.getTitle());
+            image.setSrc(bean.getSrc());
+            l.add(image) ;
+        }
+
         return list;
     }
 }
