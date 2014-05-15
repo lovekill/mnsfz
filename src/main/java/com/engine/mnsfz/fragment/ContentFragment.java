@@ -1,5 +1,6 @@
 package com.engine.mnsfz.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,16 +11,16 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import com.engine.mnsfz.IndexActivity;
-import com.engine.mnsfz.R;
+import android.widget.*;
+import com.engine.mnsfz.*;
+import com.engine.mnsfz.greendao.ImageBean;
 import com.engine.mnsfz.jsoup.ImageType;
 import com.engine.mnsfz.jsoup.NetFech;
 import com.engine.mnsfz.jsoup.Page;
+import com.engine.mnsfz.util.ImageCache;
+import com.engine.mnsfz.util.ImageFetcher;
 import com.engine.mnsfz.util.LogUtil;
+import com.etsy.android.grid.StaggeredGridView;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,12 +29,18 @@ import java.util.Random;
 /**
  * Created by USER on 2014/5/10.
  */
-public class ContentFragment extends BaseFragment implements View.OnClickListener{
+public class ContentFragment extends BaseFragment implements View.OnClickListener,AdapterView.OnItemClickListener{
     private static final String TAG = "ImageGridActivity";
     private static final int GET_PAGE = 1;
     private static final int IO_EXCEPTION = 2;
-    private ImagePagerAdapter mAdapter;
-    private ViewPager mPager;
+    private static final String IMAGE_CACHE_DIR = "thumbs";
+    private static final String IMAGE_DATA_EXTRA = "extra_image_data";
+    private int mImageThumbSize;
+    private int mImageThumbSpacing;
+    private ImageFetcher mImageFetcher;
+    private StaggeredGridView gridView ;
+    private GridAdapter mAdapter;
+//    private ViewPager mPager;
     public static final String EXTRA_IMAGE = "extra_image";
 
     List<Page> list = null;
@@ -45,7 +52,7 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case GET_PAGE:
-                    initAdaper();
+//                    initAdapter1();
                     break;
                 case IO_EXCEPTION:
                     Toast.makeText(getActivity(), getString(R.string.net_error), Toast.LENGTH_SHORT).show();
@@ -62,7 +69,7 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.image_detail_pager,container,false) ;
+        return inflater.inflate(R.layout.fragment_index,container,false) ;
     }
 
     @Override
@@ -70,10 +77,15 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         super.onViewCreated(view, savedInstanceState);
         backBtn = (ImageView) view.findViewById(R.id.back);
         backBtn.setOnClickListener(this);
-        mPager = (ViewPager) view.findViewById(R.id.pager);
         titleText = (TextView) view.findViewById(R.id.titleText);
+        gridView = (StaggeredGridView) view.findViewById(R.id.grid_view);
+        gridView.setOnItemClickListener(this);
         ((IndexActivity)getActivity()).setFragment(this);
+        initImageFech();
+        initAdapter1();
        fechData(3);
+        fechData(1);
+        fechData(2);
 
     }
     public void fechData(int i){
@@ -93,26 +105,24 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         }
         asyPageList();
     }
-    private void initAdaper() {
-//        LogUtil.d(getClass(),"initAdapter");
-        // Set up ViewPager and backing adapter
-        mAdapter = new ImagePagerAdapter(getFragmentManager(), list);
+    private void  initImageFech(){
+         mImageThumbSize = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_size);
+        mImageThumbSpacing = getResources().getDimensionPixelSize(R.dimen.image_thumbnail_spacing);
 
-        mPager.setAdapter(mAdapter);
-        mPager.setPageMargin((int) getResources().getDimension(R.dimen.image_detail_pager_margin));
-        mPager.setOffscreenPageLimit(2);
-        mPager.setOnPageChangeListener(onPageChangeListener);
-        // Set up activity to go full screen
-//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        titleText.setText("1/" + list.size());
-        // Enable some additional newer visibility and ActionBar features to create a more
-        // immersive photo viewing experience
+        ImageCache.ImageCacheParams cacheParams = new ImageCache.ImageCacheParams(getActivity(), IMAGE_CACHE_DIR);
 
+        cacheParams.setMemCacheSizePercent(0.25f); // Set memory cache to 25% of app memory
 
-        // Set the current item based on the extra passed in to this activity
-        final int extraCurrentItem = getActivity().getIntent().getIntExtra(EXTRA_IMAGE, -1);
-        if (extraCurrentItem != -1) {
-            mPager.setCurrentItem(extraCurrentItem);
+        // The ImageFetcher takes care of loading images into our ImageView children asynchronously
+        mImageFetcher = new ImageFetcher(getActivity(), mImageThumbSize);
+        mImageFetcher.setLoadingImage(R.drawable.empty_photo);
+        mImageFetcher.addImageCache(getActivity().getSupportFragmentManager(), cacheParams);
+    }
+    private  void initAdapter1(){
+        List<ImageBean> imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().list();
+        if(imageBeans!=null&&imageBeans.size()>0) {
+            mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
+            gridView.setAdapter(mAdapter);
         }
     }
     private void asyPageList() {
@@ -134,11 +144,16 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         ((IndexActivity)getActivity()).showMenu();
     }
 
-    private int getRondomInt(int max) {
-        Random random = new Random();
-        return random.nextInt(3) + 1;
-    }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        String url = mAdapter.getItem(i).getHref();
+        Intent intent = new Intent(getActivity(), ImageDetailActivity.class);
+        intent.putExtra("srcUrl", url);
+        intent.putExtra("type",Integer.parseInt(fech.getmType().toString())) ;
+        intent.putExtra("title",mAdapter.getItem(i).getTitle()) ;
+        getActivity().startActivity(intent);
+    }
     private void sendMessage(int what, Object o) {
         Message message = new Message();
         message.what = what;
@@ -146,40 +161,5 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         handler.sendMessage(message);
     }
 
-    private class ImagePagerAdapter extends FragmentStatePagerAdapter {
-        List<Page> list;
 
-        public ImagePagerAdapter(FragmentManager fm, List<Page> list) {
-            super(fm);
-            this.list = list;
-        }
-
-        @Override
-        public int getCount() {
-            return list.size();
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return new ImageGridFragment(list.get(position).getHref(), fech);
-            //  return ImageGridFragment.newInstance(list.get(position).getHref());
-        }
-    }
-
-    private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int i, float v, int i2) {
-
-        }
-
-        @Override
-        public void onPageSelected(int i) {
-            titleText.setText((i + 1) + "/" + list.size());
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int i) {
-
-        }
-    };
 }

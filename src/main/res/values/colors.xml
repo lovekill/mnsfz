@@ -21,4 +21,5 @@
     <color name="grid_state_focused">#777dbcd3</color>
     <color name="black">#000000</color>
     <color name="writer">#FFFFFF</color>
+    <color name="text_bg">#8eBDBDBD</color>
 </resources>
