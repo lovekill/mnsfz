@@ -1,5 +1,7 @@
 package com.engine.mnsfz.jsoup;
 
+import com.engine.mnsfz.DaoManager;
+import com.engine.mnsfz.greendao.ModelBean;
 import com.engine.mnsfz.util.LogUtil;
 
 import org.jsoup.Jsoup;
@@ -70,13 +72,22 @@ public class FechModle {
         return  urlList;
     }
 
-    public List<IndexBean> getModeList(String urls) throws IOException{
+    public List<IndexBean> getModeList(String urls ,String title) throws IOException{
         List<String> sList = getPageUrl(urls) ;
         List<IndexBean> beanList = new ArrayList<IndexBean>() ;
         for(String url:sList){
             LogUtil.d(getClass(),"getModeList-->"+url);
             getModelImage(beanList, url);
         }
+        List<ModelBean> modelBeans = new ArrayList<ModelBean>() ;
+        for (int i = 0; i < beanList.size(); i++) {
+            ModelBean modelBean = new ModelBean() ;
+           modelBean.setSrc(beanList.get(i).getSrc());
+            modelBean.setTime(System.currentTimeMillis());
+            modelBean.setTitle(title);
+            modelBeans.add(modelBean) ;
+        }
+        DaoManager.getDaoSession().getModelBeanDao().insertOrReplaceInTx(modelBeans);
         return  beanList ;
     }
 }

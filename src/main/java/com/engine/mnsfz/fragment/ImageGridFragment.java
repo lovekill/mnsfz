@@ -31,11 +31,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.engine.mnsfz.BuildConfig;
-import com.engine.mnsfz.GridAdapter;
-import com.engine.mnsfz.ImageDetailActivity;
-import com.engine.mnsfz.IndexActivity;
-import com.engine.mnsfz.R;
+import com.engine.mnsfz.*;
+import com.engine.mnsfz.greendao.ImageBean;
 import com.engine.mnsfz.jsoup.ImageType;
 import com.engine.mnsfz.jsoup.IndexBean;
 import com.engine.mnsfz.jsoup.NetFech;
@@ -149,8 +146,11 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
     }
 
     private  void initAdapter(){
-        mAdapter = new GridAdapter(getActivity(), list, mImageFetcher);
-        mGridView.setAdapter(mAdapter);
+        List<ImageBean> imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().limit(10).list();
+        if(imageBeans!=null&&imageBeans.size()>0) {
+            mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
+            mGridView.setAdapter(mAdapter);
+        }
     }
     @Override
     public View onCreateView(
@@ -160,6 +160,7 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
         mGridView = (GridView) v.findViewById(R.id.gridView);
 
         mGridView.setOnItemClickListener(this);
+        initAdapter();
         asyPageList(pageUrl);
         mGridView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -215,6 +216,7 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
         Intent intent = new Intent(getActivity(), ImageDetailActivity.class);
         intent.putExtra("srcUrl", url);
         intent.putExtra("type",Integer.parseInt(fech.getmType().toString())) ;
+        intent.putExtra("title",mAdapter.getItem(i).getTitle()) ;
         getActivity().startActivity(intent);
     }
 

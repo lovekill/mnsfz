@@ -1,7 +1,11 @@
 package com.engine.mnsfz.jsoup;
 
+import com.engine.mnsfz.DaoManager;
+import com.engine.mnsfz.greendao.ImageBean;
+import com.engine.mnsfz.greendao.ImageBeanDao;
 import com.engine.mnsfz.util.LogUtil;
 
+import de.greenrobot.dao.query.WhereCondition;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -67,6 +71,7 @@ public class NetFech {
         Elements baseElement = doc.select(".p_box .c_inner").eq(1);
         Elements imageLiElement = baseElement.select(".pic li a");
         List<IndexBean> list = new ArrayList<IndexBean>();
+        List<ImageBean> imageBeans = new ArrayList<ImageBean>() ;
         for (Element element : imageLiElement) {
             IndexBean bean = new IndexBean();
             bean.setTitle(element.attr("title"));
@@ -74,7 +79,18 @@ public class NetFech {
             Elements img = element.select("img");
             bean.setSrc(img.attr("src"));
             list.add(bean);
+            WhereCondition href= ImageBeanDao.Properties.Href.eq(bean.getHref()) ;
+           ImageBean  b=  DaoManager.getDaoSession().getImageBeanDao().queryBuilder().where(href).unique();
+            if(b==null) {
+                ImageBean imageBean = new ImageBean();
+                imageBean.setHref(bean.getHref());
+                imageBean.setSrc(bean.getSrc());
+                imageBean.setTitle(bean.getTitle());
+                imageBean.setTime(System.currentTimeMillis());
+                imageBeans.add(imageBean);
+            }
         }
+        DaoManager.getDaoSession().getImageBeanDao().insertOrReplaceInTx(imageBeans);
         return list;
     }
 }
