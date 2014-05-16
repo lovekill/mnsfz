@@ -67,9 +67,7 @@ public class ImageDetailActivity extends FragmentActivity implements OnClickList
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case GET_MODEL:
-                    if (!hasFinish) {
                         initAdapter();
-                    }
                     break;
                 case IO_EXCEPTION:
                     Toast.makeText(ImageDetailActivity.this, getString(R.string.net_error), Toast.LENGTH_SHORT).show();
@@ -109,7 +107,7 @@ public class ImageDetailActivity extends FragmentActivity implements OnClickList
     }
 
     private void initAdapter() {
-        if(list==null) {
+        if(list==null||list.size()==0) {
             WhereCondition condition = ModelBeanDao.Properties.Title.eq(title);
             list = DaoManager.getDaoSession().getModelBeanDao().queryBuilder().where(condition).list();
         }
@@ -139,7 +137,7 @@ public class ImageDetailActivity extends FragmentActivity implements OnClickList
                     if (list != null && list.size() > 0) {
                         sendMessage(GET_MODEL, null);
                     } else {
-                        FechModle modle = new FechModle(map.get(type));
+                        FechModle modle = new FechModle();
                          modle.getModeList(url, title);
                         sendMessage(GET_MODEL, null);
                     }

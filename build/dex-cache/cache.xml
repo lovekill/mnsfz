@@ -2,12 +2,6 @@
 <pre-dex-items>
 
     <item
-        dex="D:\github\project\mnsfz\build\pre-dexed\debug\AppOffer_2.1.1-49de2413b7835a7e3be6bd9e4203586f0be3c263.jar"
-        jar="D:\github\project\mnsfz\libs\AppOffer_2.1.1.jar"
-        jumboMode="false"
-        revision="19.0.0"
-        sha1="5cca7f6d8ce684a12e854914bf01280fcc0a7c34"/>
-    <item
         dex="D:\github\project\mnsfz\build\pre-dexed\debug\android-support-v4-5cb4713a5af3098f3657da6b821b4d689b6735ce.jar"
         jar="D:\github\project\mnsfz\libs\android-support-v4.jar"
         jumboMode="false"
@@ -19,5 +13,17 @@
         jumboMode="false"
         revision="19.0.0"
         sha1="872693211fd68d1c4e116cf90021603207725e19"/>
+    <item
+        dex="D:\github\project\mnsfz\build\pre-dexed\debug\greendao-1.3.7-806b4951e90f66d2d77b813aa8f6f73827b6fd6f.jar"
+        jar="D:\github\project\mnsfz\libs\greendao-1.3.7.jar"
+        jumboMode="false"
+        revision="19.0.0"
+        sha1="dda08161d004c4df96938da6909f1c2b96cd33c8"/>
+    <item
+        dex="D:\github\project\mnsfz\build\pre-dexed\debug\AppOffer_2.1.1-49de2413b7835a7e3be6bd9e4203586f0be3c263.jar"
+        jar="D:\github\project\mnsfz\libs\AppOffer_2.1.1.jar"
+        jumboMode="false"
+        revision="19.0.0"
+        sha1="5cca7f6d8ce684a12e854914bf01280fcc0a7c34"/>
 
 </pre-dex-items>

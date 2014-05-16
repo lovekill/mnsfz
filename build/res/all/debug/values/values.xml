@@ -4,6 +4,7 @@
     <color name="black">#000000</color>
     <color name="grid_state_focused">#777dbcd3</color>
     <color name="grid_state_pressed">#BB7dbcd3</color>
+    <color name="text_bg">#8eBDBDBD</color>
     <color name="writer">#FFFFFF</color>
 
     <declare-styleable name="SlidingMenu">
@@ -33,6 +34,16 @@
         <attr name="selectorEnabled" format="boolean" />
         <attr name="selectorDrawable" format="reference" />
     </declare-styleable>
+    <declare-styleable name="StaggeredGridView">
+        <attr name="column_count" format="integer" />
+        <attr name="column_count_portrait" format="integer" />
+        <attr name="column_count_landscape" format="integer" />
+        <attr name="item_margin" format="dimension" />
+        <attr name="grid_paddingLeft" format="dimension" />
+        <attr name="grid_paddingRight" format="dimension" />
+        <attr name="grid_paddingTop" format="dimension" />
+        <attr name="grid_paddingBottom" format="dimension" />
+    </declare-styleable>
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -53,6 +64,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="mene_set_wall">设置为壁纸</string>
     <string name="net_error">网络不可用!</string>
+    <string name="title">美女私房照</string>
 
     <style name="AppTheme" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
@@ -61,6 +73,18 @@
     <style name="PhotoGridLayout">
         <item name="android:drawSelectorOnTop">true</item>
         <item name="android:listSelector">@drawable/photogrid_list_selector</item>
+    </style>
+
+    <style name="text_name">
+        <item name="android:background">@color/text_bg</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#999999</item>
+        <item name="android:padding">3dp</item>
+    </style>
+
+    <style name="title_style">
+        <item name="android:textColor">@color/writer</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>

@@ -2,7 +2,7 @@
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
 
-    <application android:allowBackup="true" android:hardwareAccelerated="true" android:icon="@drawable/icon_luncher" android:label="@string/app_name" android:theme="@style/AppTheme">
+    <application android:allowBackup="true" android:hardwareAccelerated="true" android:icon="@drawable/icon_luncher" android:label="@string/app_name" android:name="com.engine.mnsfz.util.EngineApplication" android:theme="@style/AppTheme">
         <activity android:label="@string/app_name" android:name="com.engine.mnsfz.IndexActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

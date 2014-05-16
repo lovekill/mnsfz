@@ -45,11 +45,10 @@ public class NetFech {
     }
 
     public List<Page> getPage() throws IOException {
-
-        LogUtil.d(getClass(),baseUrl+modelMap.get(mType)+"index.html");
-        Document doc = Jsoup.connect(baseUrl + modelMap.get(mType) + "index.html").get();
-
         List<Page> pageList = new ArrayList<Page>();
+    for(ImageType t:modelMap.keySet()) {
+        LogUtil.d(getClass(), baseUrl + modelMap.get(t) + "index.html");
+        Document doc = Jsoup.connect(baseUrl + modelMap.get(mType) + "index.html").get();
         Page pageIndex = new Page(1, "index.html");
         pageList.add(pageIndex);
         Elements elements = doc.select(".cShowPage").eq(0).select("a");
@@ -57,17 +56,18 @@ public class NetFech {
             Element e = elements.get(i);
             Page p = new Page();
             p.setPageIndex(Integer.parseInt(e.text()));
-            p.setHref(e.attr("href"));
+            p.setHref(modelMap.get(t) + e.attr("href"));
             LogUtil.d(getClass(), p);
             pageList.add(p);
         }
+    }
         return pageList;
     }
 
-    public List<IndexBean> printMainImage(String indexUrl) throws IOException {
-        String modelUrl = modelMap.get(mType);
-        LogUtil.d(getClass(), "-->" + baseUrl + modelUrl + indexUrl);
-        Document doc = Jsoup.connect(baseUrl + modelUrl + indexUrl).get();
+    public List<IndexBean> getModelIndexImage(String indexUrl) throws IOException {
+//        String modelUrl = modelMap.get(mType);
+        LogUtil.e(getClass(), "getModelIndexImage-->" + baseUrl +"/"+ indexUrl);
+        Document doc = Jsoup.connect(baseUrl + indexUrl).get();
         Elements baseElement = doc.select(".p_box .c_inner").eq(1);
         Elements imageLiElement = baseElement.select(".pic li a");
         List<IndexBean> list = new ArrayList<IndexBean>();

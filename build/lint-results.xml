@@ -2,6 +2,22 @@
 <issues format="4" by="lint 22.3">
 
     <issue
+        id="ResAuto"
+        severity="Fatal"
+        message="In Gradle projects, always use http://schemas.android.com/apk/res-auto for custom attributes"
+        category="Correctness"
+        priority="9"
+        summary="Finds resource namespaces with hardcoded package names"
+        explanation="In Gradle projects, the actual package used in the final APK can vary; for you can add a `.debug` package suffix in one version and not the other. Therefore, you should *not* hardcode the application package in the resource; instead, use the special namespace `http://schemas.android.com/apk/res-auto` which will cause the tools to figure out the right namespace for the resource regardless of the actual package used during the build."
+        errorLine1="              xmlns:app=&quot;http://schemas.android.com/apk/res/com.engine.mnsfz&quot;"
+        errorLine2="              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="D:\github\project\mnsfz\src\main\res\layout\fragment_index.xml"
+            line="18"
+            column="15"/>
+    </issue>
+
+    <issue
         id="MissingRegistered"
         severity="Error"
         message="Class referenced in the manifest, cn.waps.OffersWebView, was not found in the project or the libraries"
@@ -15,8 +31,32 @@
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\AndroidManifest.xml"
-            line="27"
+            line="28"
             column="9"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        severity="Error"
+        message="Call requires API level 11 (current min is 10): android.widget.AbsListView#setAdapter"
+        category="Correctness"
+        priority="6"
+        summary="Finds API accesses to APIs that are not supported in all targeted API versions"
+        explanation="This check scans through all the Android API calls in the application and warns about any calls that are not available on *all* versions targeted by this application (according to its minimum SDK attribute in the manifest).
+
+If you really want to use this API and don&apos;t need to support older devices just set the `minSdkVersion` in your `AndroidManifest.xml` file.
+If your code is *deliberately* accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the `@TargetApi` annotation specifying the local minimum SDK to apply, such as `@TargetApi(11)`, such that this check considers 11 rather than your manifest file&apos;s minimum SDK as the required API level.
+
+If you are deliberately setting `android:` attributes in style definitions, make sure you place this in a `values-v11` folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.
+
+Similarly, you can use tools:targetApi=&quot;11&quot; in an XML file to indicate that the element will only be inflated in an adequate context."
+        errorLine1="            gridView.setAdapter(mAdapter);"
+        errorLine2="                     ~~~~~~~~~~"
+        quickfix="adt">
+        <location
+            file="D:\github\project\mnsfz\src\main\java\com\engine\mnsfz\fragment\ContentFragment.java"
+            line="126"
+            column="22"/>
     </issue>
 
     <issue
@@ -53,7 +93,7 @@ This is not an error; the application will simply ignore the attribute. However,
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\AndroidManifest.xml"
-            line="13"
+            line="14"
             column="9"/>
     </issue>
 
@@ -108,7 +148,23 @@ This is not an error; the application will simply ignore the attribute. However,
         errorLine2="    ^">
         <location
             file="D:\github\project\mnsfz\src\main\java\com\engine\mnsfz\fragment\ImageGridFragment.java"
-            line="88"/>
+            line="85"/>
+    </issue>
+
+    <issue
+        id="WrongCall"
+        severity="Fatal"
+        message="Suspicious method call; should probably call &quot;layout&quot; rather than &quot;onLayout&quot;"
+        category="Correctness"
+        priority="6"
+        summary="Finds cases where the wrong call is made, such as calling `onMeasure` instead of `measure`"
+        explanation="Custom views typically need to call `measure()` on their children, not `onMeasure`. Ditto for onDraw, onLayout, etc."
+        errorLine1="                this.onLayout(false, getLeft(), getTop(), getRight(), getBottom());"
+        errorLine2="                     ~~~~~~~~">
+        <location
+            file="D:\github\project\mnsfz\src\main\java\com\etsy\android\grid\ExtendableListView.java"
+            line="2043"
+            column="22"/>
     </issue>
 
     <issue
@@ -125,7 +181,7 @@ This is not an error; the application will simply ignore the attribute. However,
         errorLine2="                                                                                ~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\java\com\engine\mnsfz\GridAdapter.java"
-            line="34"
+            line="43"
             column="81"/>
     </issue>
 
@@ -141,7 +197,7 @@ This is not an error; the application will simply ignore the attribute. However,
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\AndroidManifest.xml"
-            line="31"
+            line="32"
             column="5"/>
     </issue>
 
@@ -182,13 +238,13 @@ If you provide neither of the previous two, the system uses the ID of the contai
 If you provide neither of the previous two, the system uses the ID of the container view."
         url="http://developer.android.com/guide/components/fragments.html"
         urls="http://developer.android.com/guide/components/fragments.html"
-        errorLine1="&lt;fragment android:layout_width=&quot;match_parent&quot; android:layout_height=&quot;match_parent&quot; android:name=&quot;com.engine.mnsfz.fragment.LeftMenuFragment&quot;>&lt;/fragment>"
-        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        errorLine1="    &lt;fragment"
+        errorLine2="    ^"
         quickfix="adt">
         <location
             file="D:\github\project\mnsfz\src\main\res\layout\fragment_left_menu.xml"
-            line="7"
-            column="1"/>
+            line="8"
+            column="5"/>
     </issue>
 
     <issue
@@ -203,7 +259,7 @@ If you provide neither of the previous two, the system uses the ID of the contai
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="D:\github\project\mnsfz\build.gradle"
-            line="16"
+            line="22"
             column="5"/>
     </issue>
 
@@ -280,6 +336,23 @@ There *are* cases where you might need to use `dp`; typically this happens when 
     </issue>
 
     <issue
+        id="ObsoleteLayoutParam"
+        severity="Warning"
+        message="Invalid layout param in a LinearLayout: layout_centerHorizontal"
+        category="Performance"
+        priority="6"
+        summary="Looks for layout params that are not valid for the given parent layout"
+        explanation="The given layout_param is not defined for the given layout, meaning it has no effect. This usually happens when you change the parent layout or move view code around without updating the layout params. This will cause useless attribute processing at runtime, and is misleading for others reading the layout so the parameter should be removed."
+        errorLine1="            android:layout_centerHorizontal=&quot;true&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        quickfix="adt">
+        <location
+            file="D:\github\project\mnsfz\src\main\res\layout\grid_image_item.xml"
+            line="21"
+            column="13"/>
+    </issue>
+
+    <issue
         id="HandlerLeak"
         severity="Warning"
         message="This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ContentFragment.1)"
@@ -291,7 +364,7 @@ There *are* cases where you might need to use `dp`; typically this happens when 
         errorLine2="                                  ~~~~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\java\com\engine\mnsfz\fragment\ContentFragment.java"
-            line="43"
+            line="51"
             column="35"/>
     </issue>
 
@@ -307,7 +380,7 @@ There *are* cases where you might need to use `dp`; typically this happens when 
         errorLine2="                                  ~~~~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\java\com\engine\mnsfz\ImageDetailActivity.java"
-            line="60"
+            line="65"
             column="35"/>
     </issue>
 
@@ -323,7 +396,7 @@ There *are* cases where you might need to use `dp`; typically this happens when 
         errorLine2="                                  ~~~~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\java\com\engine\mnsfz\fragment\ImageGridFragment.java"
-            line="71"
+            line="68"
             column="35"/>
     </issue>
 
@@ -343,7 +416,7 @@ If you need to construct a `HashMap` because you need to call an API outside of 
         errorLine2="                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="D:\github\project\mnsfz\src\main\java\com\engine\mnsfz\ImageDetailActivity.java"
-            line="57"
+            line="60"
             column="43"/>
     </issue>
 
@@ -407,6 +480,18 @@ If you need to construct a `HashMap` because you need to call an API outside of 
             file="D:\github\project\mnsfz\src\main\res\values\dimens.xml"
             line="13"
             column="14"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource R.layout.image_detail_pager appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Looks for unused resources"
+        explanation="Unused resources make applications larger and slow down builds.">
+        <location
+            file="D:\github\project\mnsfz\src\main\res\layout\image_detail_pager.xml"/>
     </issue>
 
     <issue
@@ -547,6 +632,27 @@ Note that for text fields, you should not set both the `hint` and the `contentDe
         quickfix="adt">
         <location
             file="D:\github\project\mnsfz\src\main\res\layout\activity_image_detail.xml"
+            line="29"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        severity="Warning"
+        message="[Accessibility] Missing contentDescription attribute on image"
+        category="Accessibility"
+        priority="3"
+        summary="Ensures that image widgets provide a contentDescription"
+        explanation="Non-textual widgets like ImageViews and ImageButtons should use the `contentDescription` attribute to specify a textual description of the widget such that screen readers and other accessibility tools can adequately describe the user interface.
+
+Note that elements in application screens that are purely decorative and do not provide any content or enable a user action should not have accessibility content descriptions. In this case, just suppress the lint warning with a tools:ignore=&quot;ContentDescription&quot; attribute.
+
+Note that for text fields, you should not set both the `hint` and the `contentDescription` attributes since the hint will never be shown. Just set the `hint`. See http://developer.android.com/guide/topics/ui/accessibility/checklist.html#special-cases."
+        errorLine1="        &lt;ImageView"
+        errorLine2="        ^"
+        quickfix="adt">
+        <location
+            file="D:\github\project\mnsfz\src\main\res\layout\fragment_index.xml"
             line="29"
             column="9"/>
     </issue>

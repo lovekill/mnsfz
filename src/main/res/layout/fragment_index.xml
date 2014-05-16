@@ -35,11 +35,10 @@
 
         <TextView
                 android:layout_height="wrap_content"
-                android:textSize="28dp"
                 android:layout_centerVertical="true"
-                android:textColor="@color/writer"
                 android:id="@+id/titleText"
                 android:text="@string/title"
+                style="@style/title_style"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"></TextView>
 
@@ -55,7 +54,7 @@
 
     </LinearLayout>
 
-    <com.etsy.android.grid.StaggeredGridView
+    <com.engine.mnsfz.fragment.ui.PullToRefreshStaggeredView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/grid_view"
@@ -63,6 +62,7 @@
             android:layout_height="wrap_content"
             android:background="#eeeffe"
             app:item_margin="8dp"
+            app:ptrMode="both"
             app:column_count="2" />
     <!--<GridView-->
             <!--android:id="@+id/grid_view"-->

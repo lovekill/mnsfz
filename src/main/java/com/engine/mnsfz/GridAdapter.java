@@ -38,7 +38,6 @@ public class GridAdapter extends EngineAdapter<ImageBean> {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        LogUtil.e(getClass(),"getView-->"+i+"===>"+getCount());
         if(view==null){
            view= LayoutInflater.from(mContext).inflate(R.layout.grid_image_item,null) ;
         }

@@ -24,13 +24,7 @@ public class FechModle {
     Pattern p = Pattern.compile("arrayImg\\[\\d\\]=\".+") ;
     protected String baseUrl = "http://www.mnsfz.com";
     private Map<ImageType, String> modelMap = new HashMap<ImageType, String>();
-    private ImageType mType;
-    public FechModle(ImageType type) {
-        mType=type;
-        registMap();
-    }
-
-    private void registMap() {
+    public FechModle() {
         modelMap.put(ImageType.QIAOPI, "/h/qiaopi/");
         modelMap.put(ImageType.QINCUN, "/h/qingchun/");
         modelMap.put(ImageType.SUNMM, "/h/yangguang/");
@@ -59,17 +53,28 @@ public class FechModle {
 
 
    private   List<String> getPageUrl(String urls) throws  IOException{
-       LogUtil.d(getClass(),"-->"+baseUrl+urls +mType.toString());
+       //从URL中提取前面 /h/qiaopi/
+       String pre = getPre(urls) ;
+       LogUtil.d(getClass(),"getPageUrl-->"+baseUrl+urls );
         Document doc = Jsoup.connect(baseUrl+urls).get();
         Elements e = doc.select(".pageList a") ;
         List<String> urlList= new ArrayList<String>() ;
         Element element= e.get(e.size()-2) ;
-        urlList.add(modelMap.get(mType)+element.attr("href")) ;
+        urlList.add(pre+element.attr("href")) ;
 //        urlList.add(e.get(e.size()-2).attr("href")) ;
 //        for(int i=1;i<e.size();i++){
 //            urlList.add(qiaopiUrl+e.get(i).attr("href")) ;
 //        }
         return  urlList;
+    }
+
+    private  String getPre(String url){
+        for(ImageType t:modelMap.keySet()){
+            if(url.contains(modelMap.get(t))){
+                return modelMap.get(t) ;
+            }
+        }
+       return  "" ;
     }
 
     public List<IndexBean> getModeList(String urls ,String title) throws IOException{

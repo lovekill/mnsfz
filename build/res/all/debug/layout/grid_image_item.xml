@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:orientation="vertical"
+                android:padding="3dp"
+                android:background="@color/writer"
+                android:layout_height="80dp">
 
-    <com.engine.mnsfz.fragment.ui.RecyclingImageView
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/image"></com.engine.mnsfz.fragment.ui.RecyclingImageView>
+    <com.etsy.android.grid.util.DynamicHeightImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/image"></com.etsy.android.grid.util.DynamicHeightImageView>
 
     <TextView
             android:id="@+id/name"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:ellipsize="end"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:layout_alignParentBottom="true"></TextView>
-</RelativeLayout>
+            style="@style/text_name"
+            android:layout_centerHorizontal="true"
+            ></TextView>
+</LinearLayout>

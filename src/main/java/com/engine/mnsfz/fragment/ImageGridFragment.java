@@ -21,11 +21,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -33,10 +31,8 @@ import android.widget.Toast;
 
 import com.engine.mnsfz.*;
 import com.engine.mnsfz.greendao.ImageBean;
-import com.engine.mnsfz.jsoup.ImageType;
 import com.engine.mnsfz.jsoup.IndexBean;
 import com.engine.mnsfz.jsoup.NetFech;
-import com.engine.mnsfz.jsoup.QiaoPi;
 import com.engine.mnsfz.util.ImageCache;
 import com.engine.mnsfz.util.ImageFetcher;
 
@@ -90,7 +86,7 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 //        QiaoPi qiaopi = new QiaoPi();
         this.fech=fech;
 //        try {
-//            list=fech.printMainImage(pageUrl) ;
+//            list=fech.getModelIndexImage(pageUrl) ;
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
@@ -112,7 +108,7 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
             @Override
             public void run() {
                 try {
-                    list=fech.printMainImage(pageUrl) ;
+                    list=fech.getModelIndexImage(pageUrl) ;
                     sendMessage(GET_PAGE,null);
                 } catch (IOException e) {
                     e.printStackTrace();

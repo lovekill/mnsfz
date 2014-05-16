@@ -18,14 +18,22 @@ document.getElementById(id+'Link').style.display = 'none';
 <body>
 <h1>Lint Report</h1>
 <div class="titleSeparator"></div>
-Check performed at Tue May 13 18:12:06 CST 2014.<br/>
-2 errors and 38 warnings found:<br/><br/>
+Check performed at Fri May 16 14:10:18 CST 2014.<br/>
+5 errors and 41 warnings found:<br/><br/>
 <table class="overview">
 <tr><td></td><td class="categoryColumn"><a href="#Correctness">Correctness</a>
 </td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
+<a href="#ResAuto">ResAuto: Hardcoded Package in Namespace</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
 <a href="#MissingRegistered">MissingRegistered: Missing registered class</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
+<a href="#NewApi">NewApi: Calling new methods on older versions</a>
 </td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
@@ -38,6 +46,10 @@ Check performed at Tue May 13 18:12:06 CST 2014.<br/>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
 <a href="#ValidFragment">ValidFragment: Fragment not instantiatable</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
+<a href="#WrongCall">WrongCall: Using wrong draw/layout method</a>
 </td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
@@ -66,6 +78,10 @@ Check performed at Tue May 13 18:12:06 CST 2014.<br/>
 <tr><td></td><td class="categoryColumn"><a href="#Performance">Performance</a>
 </td></tr>
 <tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<a href="#ObsoleteLayoutParam">ObsoleteLayoutParam: Obsolete layout params</a>
+</td></tr>
+<tr>
 <td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#HandlerLeak">HandlerLeak: Handler reference leaks</a>
 </td></tr>
@@ -78,7 +94,7 @@ Check performed at Tue May 13 18:12:06 CST 2014.<br/>
 <a href="#FloatMath">FloatMath: Using <code>FloatMath</code> instead of <code>Math</code></a>
 </td></tr>
 <tr>
-<td class="countColumn">6</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<td class="countColumn">7</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#UnusedResources">UnusedResources: Unused resources</a>
 </td></tr>
 <tr>
@@ -98,7 +114,7 @@ Check performed at Tue May 13 18:12:06 CST 2014.<br/>
 <tr><td></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
 </td></tr>
 <tr>
-<td class="countColumn">2</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#ContentDescription">ContentDescription: Image without <code>contentDescription</code></a>
 </td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
@@ -113,18 +129,41 @@ Check performed at Tue May 13 18:12:06 CST 2014.<br/>
 <a name="Correctness"></a>
 <div class="category"><a href="#" title="Return to top">Correctness</a><div class="categorySeparator"></div>
 </div>
+<a name="ResAuto"></a>
+<div class="issue">
+<div class="id"><a href="#" title="Return to top">ResAuto: Hardcoded Package in Namespace</a><div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="../src/main/res/layout/fragment_index.xml">../src/main/res/layout/fragment_index.xml</a>:18</span>: <span class="message">In Gradle projects, always use http://schemas.android.com/apk/res-auto for custom attributes</span><br /><pre class="errorlines">
+<span class="lineno">  15</span>   limitations under the License.
+<span class="lineno">  16</span> -->
+<span class="lineno">  17</span> &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<span class="lineno">  18</span>               <span class="errorspan">xmlns:app="http://schemas.android.com/apk/res/com.engine.mnsfz"</span>
+<span class="lineno">  19</span>               android:layout_height="match_parent"
+<span class="lineno">  20</span>               android:orientation="vertical"
+</pre>
+</div>
+<div class="metadata">Priority: 9 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="error">Fatal</span><div class="summary">
+Explanation: Finds resource namespaces with hardcoded package names.</div>
+<div class="explanation">
+In Gradle projects, the actual package used in the final APK can vary; for you can add a <code>.debug</code> package suffix in one version and not the other. Therefore, you should <b>not</b> hardcode the application package in the resource; instead, use the special namespace <code>http://schemas.android.com/apk/res-auto</code> which will cause the tools to figure out the right namespace for the resource regardless of the actual package used during the build.
+</div>
+<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "ResAuto" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
 <a name="MissingRegistered"></a>
 <div class="issue">
 <div class="id"><a href="#" title="Return to top">MissingRegistered: Missing registered class</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:27</span>: <span class="message">Class referenced in the manifest, cn.waps.OffersWebView, was not found in the project or the libraries</span><br /><pre class="errorlines">
-<span class="lineno">  24</span>             &lt;/intent-filter>
-<span class="lineno">  25</span>         &lt;/activity>
-<span class="lineno">  26</span>         &lt;activity android:name=".ImageDetailActivity">&lt;/activity>
-<span class="lineno">  27</span>         <span class="errorspan">&lt;activity android:name="cn.waps.OffersWebView" android:configChanges="keyboardHidden|orientation" /></span>
-<span class="lineno">  28</span>         &lt;meta-data android:name="APP_ID" android:value="f18c367b4bfe1887abf3cc13c1bb43e8" />
-<span class="lineno">  29</span>         &lt;meta-data android:name="APP_PID" android:value="baidu" />
+<span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:28</span>: <span class="message">Class referenced in the manifest, cn.waps.OffersWebView, was not found in the project or the libraries</span><br /><pre class="errorlines">
+<span class="lineno">  25</span>             &lt;/intent-filter>
+<span class="lineno">  26</span>         &lt;/activity>
+<span class="lineno">  27</span>         &lt;activity android:name=".ImageDetailActivity">&lt;/activity>
+<span class="lineno">  28</span>         <span class="errorspan">&lt;activity android:name="cn.waps.OffersWebView" android:configChanges="keyboardHidden|orientation" /></span>
+<span class="lineno">  29</span>         &lt;meta-data android:name="APP_ID" android:value="f18c367b4bfe1887abf3cc13c1bb43e8" />
+<span class="lineno">  30</span>         &lt;meta-data android:name="APP_PID" android:value="baidu" />
 </pre>
 </div>
 <div class="metadata">Priority: 8 / 10<br/>
@@ -136,6 +175,38 @@ If a class is referenced in the manifest, it must also exist in the project (or 
 </div>
 <br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">http://developer.android.com/guide/topics/manifest/manifest-intro.html</a>
 </div><br/>To suppress this error, use the issue id "MissingRegistered" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
+<a name="NewApi"></a>
+<div class="issue">
+<div class="id"><a href="#" title="Return to top">NewApi: Calling new methods on older versions</a><div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:126</span>: <span class="message">Call requires API level 11 (current min is 10): android.widget.AbsListView#setAdapter</span><br /><pre class="errorlines">
+<span class="lineno"> 123</span>         List&lt;ImageBean> imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().orderDesc(ImageBeanDao.Properties.Time).list();
+<span class="lineno"> 124</span>         if(imageBeans!=null&amp;&amp;imageBeans.size()>0) {
+<span class="lineno"> 125</span>             mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
+<span class="lineno"> 126</span>             gridView.<span class="errorspan">setAdapter(mAdapter);</span>
+<span class="lineno"> 127</span>         }
+<span class="lineno"> 128</span>     }
+</pre>
+</div>
+<div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img alt="Fix" border="0" align="top" src="lint-results_files/lint-run.png" />
+<br>
+Priority: 6 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="error">Error</span><div class="summary">
+Explanation: Finds API accesses to APIs that are not supported in all targeted API versions.</div>
+<div class="explanation">
+This check scans through all the Android API calls in the application and warns about any calls that are not available on <b>all</b> versions targeted by this application (according to its minimum SDK attribute in the manifest).<br/>
+<br/>
+If you really want to use this API and don't need to support older devices just set the <code>minSdkVersion</code> in your <code>AndroidManifest.xml</code> file.<br/>
+If your code is <b>deliberately</b> accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the <code>@TargetApi</code> annotation specifying the local minimum SDK to apply, such as <code>@TargetApi(11)</code>, such that this check considers 11 rather than your manifest file's minimum SDK as the required API level.<br/>
+<br/>
+If you are deliberately setting <code>android:</code> attributes in style definitions, make sure you place this in a <code>values-v11</code> folder in order to avoid running into runtime conflicts on certain devices where manufacturers have added custom attributes whose ids conflict with the new ones on later platforms.<br/>
+<br/>
+Similarly, you can use tools:targetApi="11" in an XML file to indicate that the element will only be inflated in an adequate context.
+</div>
+<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "NewApi" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
 </div>
 <a name="OldTargetApi"></a>
 <div class="issue">
@@ -168,13 +239,13 @@ To fix this issue, set the <code>targetSdkVersion</code> to the highest availabl
 <div class="id"><a href="#" title="Return to top">UnusedAttribute: Attribute unused on older versions</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:13</span>: <span class="message">Attribute "hardwareAccelerated" is only used in API level 11 and higher (current min is 10)</span><br /><pre class="errorlines">
-<span class="lineno">  10</span> 
+<span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:14</span>: <span class="message">Attribute "hardwareAccelerated" is only used in API level 11 and higher (current min is 10)</span><br /><pre class="errorlines">
 <span class="lineno">  11</span>     &lt;application
-<span class="lineno">  12</span>         android:allowBackup="true"
-<span class="lineno">  13</span>         <span class="errorspan">android:hardwareAccelerated="true"</span>
-<span class="lineno">  14</span>         android:icon="@drawable/icon_luncher"
-<span class="lineno">  15</span>         android:label="@string/app_name"
+<span class="lineno">  12</span>          android:name=".util.EngineApplication"
+<span class="lineno">  13</span>         android:allowBackup="true"
+<span class="lineno">  14</span>         <span class="errorspan">android:hardwareAccelerated="true"</span>
+<span class="lineno">  15</span>         android:icon="@drawable/icon_luncher"
+<span class="lineno">  16</span>         android:label="@string/app_name"
 </pre>
 <span class="location"><a href="../src/main/res/menu/index.xml">../src/main/res/menu/index.xml</a>:5</span>: <span class="message">Attribute "showAsAction" is only used in API level 11 and higher (current min is 10)</span><br /><pre class="errorlines">
 <span class="lineno">   2</span>     &lt;item android:id="@+id/action_settings"
@@ -209,13 +280,13 @@ This is not an error; the application will simply ignore the attribute. However,
 <div class="id"><a href="#" title="Return to top">ValidFragment: Fragment not instantiatable</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java">../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java</a>:88</span>: <span class="message">Avoid non-default constructors in fragments: use a default constructor plus Fragment#setArguments(Bundle) instead</span><br /><pre class="errorlines">
-<span class="lineno">  85</span>     public ImageGridFragment() {
-<span class="lineno">  86</span>     }
-<span class="lineno">  87</span> 
-<span class="lineno">  88</span> <span class="errorspan">    public ImageGridFragment(String pageUrl,NetFech fech) {</span>
-<span class="lineno">  89</span>         final Bundle args = new Bundle();
-<span class="lineno">  90</span>         args.putString(IMAGE_DATA_EXTRA, pageUrl);
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java">../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java</a>:85</span>: <span class="message">Avoid non-default constructors in fragments: use a default constructor plus Fragment#setArguments(Bundle) instead</span><br /><pre class="errorlines">
+<span class="lineno">  82</span>     public ImageGridFragment() {
+<span class="lineno">  83</span>     }
+<span class="lineno">  84</span> 
+<span class="lineno">  85</span> <span class="errorspan">    public ImageGridFragment(String pageUrl,NetFech fech) {</span>
+<span class="lineno">  86</span>         final Bundle args = new Bundle();
+<span class="lineno">  87</span>         args.putString(IMAGE_DATA_EXTRA, pageUrl);
 </pre>
 </div>
 <div class="metadata">Priority: 6 / 10<br/>
@@ -229,18 +300,41 @@ From the Fragment documentation:<br/>
 <br/><div class="moreinfo">More info: <a href="http://developer.android.com/reference/android/app/Fragment.html#Fragment()">http://developer.android.com/reference/android/app/Fragment.html#Fragment()</a>
 </div><br/>To suppress this error, use the issue id "ValidFragment" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
 </div>
+<a name="WrongCall"></a>
+<div class="issue">
+<div class="id"><a href="#" title="Return to top">WrongCall: Using wrong draw/layout method</a><div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="../src/main/java/com/etsy/android/grid/ExtendableListView.java">../src/main/java/com/etsy/android/grid/ExtendableListView.java</a>:2043</span>: <span class="message">Suspicious method call; should probably call "layout" rather than "onLayout"</span><br /><pre class="errorlines">
+<span class="lineno">2040</span>             // Force one here to make sure that the state of the list matches
+<span class="lineno">2041</span>             // the state of the adapter.
+<span class="lineno">2042</span>             if (mDataChanged) {
+<span class="lineno">2043</span>                 this.<span class="errorspan">onLayout(false, getLeft(), getTop(), getRight(), getBottom());</span>
+<span class="lineno">2044</span>             }
+<span class="lineno">2045</span>         }
+</pre>
+</div>
+<div class="metadata">Priority: 6 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="error">Fatal</span><div class="summary">
+Explanation: Finds cases where the wrong call is made, such as calling <code>onMeasure</code> instead of <code>measure</code></div>
+<div class="explanation">
+Custom views typically need to call <code>measure()</code> on their children, not <code>onMeasure</code>. Ditto for onDraw, onLayout, etc.
+</div>
+<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "WrongCall" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
 <a name="InflateParams"></a>
 <div class="issue">
 <div class="id"><a href="#" title="Return to top">InflateParams: Layout Inflation without a Parent</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/GridAdapter.java">../src/main/java/com/engine/mnsfz/GridAdapter.java</a>:34</span>: <span class="message">Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element)</span><br /><pre class="errorlines">
-<span class="lineno">  31</span>     @Override
-<span class="lineno">  32</span>     public View getView(int i, View view, ViewGroup viewGroup) {
-<span class="lineno">  33</span>         if(view==null){
-<span class="lineno">  34</span>            view= LayoutInflater.from(mContext).inflate(R.layout.grid_image_item,<span class="errorspan">null) ;</span>
-<span class="lineno">  35</span>         }
-<span class="lineno">  36</span>         ImageView imageView = (ImageView) view.findViewById(R.id.image);
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/GridAdapter.java">../src/main/java/com/engine/mnsfz/GridAdapter.java</a>:43</span>: <span class="message">Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element)</span><br /><pre class="errorlines">
+<span class="lineno">  40</span>     public View getView(int i, View view, ViewGroup viewGroup) {
+<span class="lineno">  41</span>         LogUtil.e(getClass(),"getView-->"+i+"===>"+getCount());
+<span class="lineno">  42</span>         if(view==null){
+<span class="lineno">  43</span>            view= LayoutInflater.from(mContext).inflate(R.layout.grid_image_item,<span class="errorspan">null) ;</span>
+<span class="lineno">  44</span>         }
+<span class="lineno">  45</span>         double positionHeight = getPositionRatio(i);
 </pre>
 </div>
 <div class="metadata">Priority: 5 / 10<br/>
@@ -258,13 +352,13 @@ When inflating a layout, avoid passing in null as the parent view, since otherwi
 <div class="id"><a href="#" title="Return to top">ManifestOrder: Incorrect order of elements in manifest</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:31</span>: <span class="message">&lt;uses-permission> tag appears after &lt;application> tag</span><br /><pre class="errorlines">
-<span class="lineno">  28</span>         &lt;meta-data android:name="APP_ID" android:value="f18c367b4bfe1887abf3cc13c1bb43e8" />
-<span class="lineno">  29</span>         &lt;meta-data android:name="APP_PID" android:value="baidu" />
-<span class="lineno">  30</span>     &lt;/application>
-<span class="lineno">  31</span>     <span class="errorspan">&lt;uses-permission android:name="android.permission.INTERNET" /></span>
-<span class="lineno">  32</span>     &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<span class="lineno">  33</span>     &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:32</span>: <span class="message">&lt;uses-permission> tag appears after &lt;application> tag</span><br /><pre class="errorlines">
+<span class="lineno">  29</span>         &lt;meta-data android:name="APP_ID" android:value="f18c367b4bfe1887abf3cc13c1bb43e8" />
+<span class="lineno">  30</span>         &lt;meta-data android:name="APP_PID" android:value="baidu" />
+<span class="lineno">  31</span>     &lt;/application>
+<span class="lineno">  32</span>     <span class="errorspan">&lt;uses-permission android:name="android.permission.INTERNET" /></span>
+<span class="lineno">  33</span>     &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<span class="lineno">  34</span>     &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 </pre>
 </div>
 <div class="metadata">Priority: 5 / 10<br/>
@@ -289,13 +383,13 @@ The &lt;application> tag should appear after the elements which declare which ve
 <span class="lineno">   8</span> &lt;/LinearLayout>
 
 </pre>
-<span class="location"><a href="../src/main/res/layout/fragment_left_menu.xml">../src/main/res/layout/fragment_left_menu.xml</a>:7</span>: <span class="message">This &lt;fragment> tag should specify an id or a tag to preserve state across activity restarts</span><br /><pre class="errorlines">
-<span class="lineno">   4</span>               android:orientation="vertical"
+<span class="location"><a href="../src/main/res/layout/fragment_left_menu.xml">../src/main/res/layout/fragment_left_menu.xml</a>:8</span>: <span class="message">This &lt;fragment> tag should specify an id or a tag to preserve state across activity restarts</span><br /><pre class="errorlines">
 <span class="lineno">   5</span>               android:layout_width="match_parent"
 <span class="lineno">   6</span>               android:layout_height="match_parent">
-<span class="lineno">   7</span> <span class="errorspan">&lt;fragment android:layout_width="match_parent" android:layout_height="match_parent" android:name="com.engine.mnsfz.fragment.LeftMenuFragment">&lt;/fragment></span>
-<span class="lineno">   8</span> &lt;/LinearLayout>
-
+<span class="lineno">   7</span> 
+<span class="lineno">   8</span>     <span class="errorspan">&lt;fragment</span>
+<span class="lineno">   9</span>             android:layout_width="match_parent"
+<span class="lineno">  10</span>             android:layout_height="match_parent"
 </pre>
 </div>
 <div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img alt="Fix" border="0" align="top" src="lint-results_files/lint-run.png" />
@@ -319,13 +413,13 @@ If you provide neither of the previous two, the system uses the ID of the contai
 <div class="id"><a href="#" title="Return to top">GradleDependency: Obsolete Gradle Dependency</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../build.gradle">../build.gradle</a>:16</span>: <span class="message">Old buildToolsVersion; recommended version is 19.0.2 or later</span><br /><pre class="errorlines">
-<span class="lineno">  13</span> 
-<span class="lineno">  14</span> android {
-<span class="lineno">  15</span>     compileSdkVersion 19
-<span class="lineno">  16</span>     <span class="errorspan">buildToolsVersion "19.0.0"</span>
-<span class="lineno">  17</span> 
-<span class="lineno">  18</span>     defaultConfig {
+<span class="location"><a href="../build.gradle">../build.gradle</a>:22</span>: <span class="message">Old buildToolsVersion; recommended version is 19.0.2 or later</span><br /><pre class="errorlines">
+<span class="lineno">  19</span> 
+<span class="lineno">  20</span> android {
+<span class="lineno">  21</span>     compileSdkVersion 19
+<span class="lineno">  22</span>     <span class="errorspan">buildToolsVersion "19.0.0"</span>
+<span class="lineno">  23</span> 
+<span class="lineno">  24</span>     defaultConfig {
 </pre>
 </div>
 <div class="metadata">Priority: 4 / 10<br/>
@@ -406,34 +500,59 @@ There <b>are</b> cases where you might need to use <code>dp</code>; typically th
 <a name="Performance"></a>
 <div class="category"><a href="#" title="Return to top">Performance</a><div class="categorySeparator"></div>
 </div>
+<a name="ObsoleteLayoutParam"></a>
+<div class="issue">
+<div class="id"><a href="#" title="Return to top">ObsoleteLayoutParam: Obsolete layout params</a><div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="../src/main/res/layout/grid_image_item.xml">../src/main/res/layout/grid_image_item.xml</a>:21</span>: <span class="message">Invalid layout param in a LinearLayout: layout_centerHorizontal</span><br /><pre class="errorlines">
+<span class="lineno">  18</span>             android:layout_width="match_parent"
+<span class="lineno">  19</span>             android:ellipsize="end"
+<span class="lineno">  20</span>             style="@style/text_name"
+<span class="lineno">  21</span>             <span class="errorspan">android:layout_centerHorizontal="true"</span>
+<span class="lineno">  22</span>             >&lt;/TextView>
+<span class="lineno">  23</span> &lt;/LinearLayout>
+</pre>
+</div>
+<div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img alt="Fix" border="0" align="top" src="lint-results_files/lint-run.png" />
+<br>
+Priority: 6 / 10<br/>
+Category: Performance</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for layout params that are not valid for the given parent layout.</div>
+<div class="explanation">
+The given layout_param is not defined for the given layout, meaning it has no effect. This usually happens when you change the parent layout or move view code around without updating the layout params. This will cause useless attribute processing at runtime, and is misleading for others reading the layout so the parameter should be removed.
+</div>
+<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "ObsoleteLayoutParam" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
 <a name="HandlerLeak"></a>
 <div class="issue">
 <div class="id"><a href="#" title="Return to top">HandlerLeak: Handler reference leaks</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:43</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ContentFragment.1)</span><br /><pre class="errorlines">
-<span class="lineno">  40</span>     private ImageView backBtn;
-<span class="lineno">  41</span>     private TextView titleText;
-<span class="lineno">  42</span>     private NetFech fech;
-<span class="lineno">  43</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
-<span class="lineno">  44</span>         @Override
-<span class="lineno">  45</span>         public void handleMessage(Message msg) {
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:51</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ContentFragment.1)</span><br /><pre class="errorlines">
+<span class="lineno">  48</span>     private ImageView backBtn;
+<span class="lineno">  49</span>     private TextView titleText;
+<span class="lineno">  50</span>     private NetFech fech;
+<span class="lineno">  51</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
+<span class="lineno">  52</span>         @Override
+<span class="lineno">  53</span>         public void handleMessage(Message msg) {
 </pre>
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/ImageDetailActivity.java">../src/main/java/com/engine/mnsfz/ImageDetailActivity.java</a>:60</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.ImageDetailActivity.1)</span><br /><pre class="errorlines">
-<span class="lineno">  57</span>     private Map&lt;Integer, ImageType> map = new HashMap&lt;Integer, ImageType>();
-<span class="lineno">  58</span>     private String url;
-<span class="lineno">  59</span>     private int type;
-<span class="lineno">  60</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
-<span class="lineno">  61</span>         @Override
-<span class="lineno">  62</span>         public void handleMessage(Message msg) {
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/ImageDetailActivity.java">../src/main/java/com/engine/mnsfz/ImageDetailActivity.java</a>:65</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.ImageDetailActivity.1)</span><br /><pre class="errorlines">
+<span class="lineno">  62</span>     private int type;
+<span class="lineno">  63</span>     private String title;
+<span class="lineno">  64</span>     private boolean hasFinish = false;
+<span class="lineno">  65</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
+<span class="lineno">  66</span>         @Override
+<span class="lineno">  67</span>         public void handleMessage(Message msg) {
 </pre>
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java">../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java</a>:71</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ImageGridFragment.1)</span><br /><pre class="errorlines">
-<span class="lineno">  68</span>     private  String pageUrl ;
-<span class="lineno">  69</span>     private static final int GET_PAGE = 1;
-<span class="lineno">  70</span>     private static final int IO_EXCEPTION = 2;
-<span class="lineno">  71</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
-<span class="lineno">  72</span>         @Override
-<span class="lineno">  73</span>         public void handleMessage(Message msg) {
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java">../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java</a>:68</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ImageGridFragment.1)</span><br /><pre class="errorlines">
+<span class="lineno">  65</span>     private  String pageUrl ;
+<span class="lineno">  66</span>     private static final int GET_PAGE = 1;
+<span class="lineno">  67</span>     private static final int IO_EXCEPTION = 2;
+<span class="lineno">  68</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
+<span class="lineno">  69</span>         @Override
+<span class="lineno">  70</span>         public void handleMessage(Message msg) {
 </pre>
 </div>
 <div class="metadata">Priority: 4 / 10<br/>
@@ -450,13 +569,13 @@ Since this Handler is declared as an inner class, it may prevent the outer class
 <div class="id"><a href="#" title="Return to top">UseSparseArrays: HashMap can be replaced with SparseArray</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/ImageDetailActivity.java">../src/main/java/com/engine/mnsfz/ImageDetailActivity.java</a>:57</span>: <span class="message">Use new SparseArray&lt;ImageType>(...) instead for better performance</span><br /><pre class="errorlines">
-<span class="lineno">  54</span>     private ViewPager mPager;
-<span class="lineno">  55</span>     private ImageView backButton;
-<span class="lineno">  56</span>     private TextView textView;
-<span class="lineno">  57</span>     private Map&lt;Integer, ImageType> map = <span class="errorspan">new HashMap&lt;Integer, ImageType>();</span>
-<span class="lineno">  58</span>     private String url;
-<span class="lineno">  59</span>     private int type;
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/ImageDetailActivity.java">../src/main/java/com/engine/mnsfz/ImageDetailActivity.java</a>:60</span>: <span class="message">Use new SparseArray&lt;ImageType>(...) instead for better performance</span><br /><pre class="errorlines">
+<span class="lineno">  57</span>     private ViewPager mPager;
+<span class="lineno">  58</span>     private ImageView backButton;
+<span class="lineno">  59</span>     private TextView textView;
+<span class="lineno">  60</span>     private Map&lt;Integer, ImageType> map = <span class="errorspan">new HashMap&lt;Integer, ImageType>();</span>
+<span class="lineno">  61</span>     private String url;
+<span class="lineno">  62</span>     private int type;
 </pre>
 </div>
 <div class="metadata">Priority: 4 / 10<br/>
@@ -518,6 +637,7 @@ In older versions of Android, using <code>android.util.FloatMath</code> was reco
 <span class="lineno">  14</span> 
 <span class="lineno">  15</span> &lt;/resources>
 </pre>
+<span class="location"><a href="../src/main/res/layout/image_detail_pager.xml">../src/main/res/layout/image_detail_pager.xml</a></span>: <span class="message">The resource R.layout.image_detail_pager appears to be unused</span><br />
 <span class="location"><a href="../src/main/res/layout/main_layout.xml">../src/main/res/layout/main_layout.xml</a></span>: <span class="message">The resource R.layout.main_layout appears to be unused</span><br />
 <span class="location"><a href="../src/main/res/drawable/more.xml">../src/main/res/drawable/more.xml</a></span>: <span class="message">The resource R.drawable.more appears to be unused</span><br />
 <span class="location"><a href="../src/main/res/values/strings.xml">../src/main/res/values/strings.xml</a>:8</span>: <span class="message">The resource R.string.hello_world appears to be unused</span><br /><pre class="errorlines">
@@ -617,6 +737,14 @@ Low density is not really used much anymore, so this check ignores the ldpi dens
 </div>
 <div class="warningslist">
 <span class="location"><a href="../src/main/res/layout/activity_image_detail.xml">../src/main/res/layout/activity_image_detail.xml</a>:29</span>: <span class="message">[Accessibility] Missing contentDescription attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  26</span>             android:padding="10dp"
+<span class="lineno">  27</span>             android:layout_height="wrap_content">
+<span class="lineno">  28</span> 
+<span class="lineno">  29</span>         <span class="errorspan">&lt;ImageView</span>
+<span class="lineno">  30</span>                 android:layout_height="wrap_content"
+<span class="lineno">  31</span>                 android:id="@+id/back"
+</pre>
+<span class="location"><a href="../src/main/res/layout/fragment_index.xml">../src/main/res/layout/fragment_index.xml</a>:29</span>: <span class="message">[Accessibility] Missing contentDescription attribute on image</span><br /><pre class="errorlines">
 <span class="lineno">  26</span>             android:padding="10dp"
 <span class="lineno">  27</span>             android:layout_height="wrap_content">
 <span class="lineno">  28</span> 

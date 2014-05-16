@@ -18,7 +18,7 @@ public class JsoupMain {
 		IndexImage index = new IndexImage() ;
 		try {
 			index.getQiaopiPic();
-//			List<IndexBean> list= index.printMainImage() ;
+//			List<IndexBean> list= index.getModelIndexImage() ;
 //			index.getPageList(list.get(5).getHref()) ;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

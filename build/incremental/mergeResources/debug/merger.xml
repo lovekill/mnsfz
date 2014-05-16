@@ -146,9 +146,11 @@
             <file
                 path="D:\github\project\mnsfz\src\main\res\values\colors.xml"
                 qualifiers="" >
+                <color name="grid_state_focused" >#777dbcd3
+                </color>
                 <color name="black" >#000000
                 </color>
-                <color name="grid_state_focused" >#777dbcd3
+                <color name="text_bg" >#8eBDBDBD
                 </color>
                 <color name="grid_state_pressed" >#BB7dbcd3
                 </color>
@@ -166,16 +168,16 @@
                 </dimen>
                 <dimen name="activity_horizontal_margin" >16dp
                 </dimen>
+                <dimen name="image_thumbnail_size" >100dp
+                </dimen>
 
                 <integer name="num_cols" >
 1
                 </integer>
 
-                <dimen name="image_thumbnail_size" >100dp
+                <dimen name="activity_vertical_margin" >16dp
                 </dimen>
                 <dimen name="list_padding" >10dp
-                </dimen>
-                <dimen name="activity_vertical_margin" >16dp
                 </dimen>
                 <dimen name="image_size" >400dp
                 </dimen>
@@ -265,6 +267,8 @@
                 </string>
                 <string name="action_settings" >Settings
                 </string>
+                <string name="title" >美女私房照
+                </string>
                 <string name="app_name" >有沟必火
                 </string>
                 <string name="hello_world" >Hello world!
@@ -276,12 +280,36 @@
                 path="D:\github\project\mnsfz\src\main\res\values\styles.xml"
                 qualifiers="" >
 
+                <style name="title_style" >
+                    <item name="android:textColor">
+@color/writer
+                    </item>
+                    <item name="android:textSize">
+16sp
+                    </item>
+                </style>
+
                 <style name="PhotoGridLayout" >
                     <item name="android:drawSelectorOnTop">
 true
                     </item>
                     <item name="android:listSelector">
 @drawable/photogrid_list_selector
+                    </item>
+                </style>
+
+                <style name="text_name" >
+                    <item name="android:background">
+@color/text_bg
+                    </item>
+                    <item name="android:textSize">
+14sp
+                    </item>
+                    <item name="android:textColor">
+#999999
+                    </item>
+                    <item name="android:padding">
+3dp
                     </item>
                 </style>
 
@@ -320,6 +348,41 @@ true
 
                     <!-- API 14 theme customizations can go here. -->
                 </style>
+            </file>
+            <file
+                name="fragment_index"
+                path="D:\github\project\mnsfz\src\main\res\layout\fragment_index.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="D:\github\project\mnsfz\src\main\res\values\stag_attrs.xml"
+                qualifiers="" >
+                <declare-styleable name="StaggeredGridView" >
+                    <attr
+                        name="column_count"
+                        format="integer" />
+                    <attr
+                        name="column_count_portrait"
+                        format="integer" />
+                    <attr
+                        name="column_count_landscape"
+                        format="integer" />
+                    <attr
+                        name="item_margin"
+                        format="dimension" />
+                    <attr
+                        name="grid_paddingLeft"
+                        format="dimension" />
+                    <attr
+                        name="grid_paddingRight"
+                        format="dimension" />
+                    <attr
+                        name="grid_paddingTop"
+                        format="dimension" />
+                    <attr
+                        name="grid_paddingBottom"
+                        format="dimension" />
+                </declare-styleable>
             </file>
         </source>
         <source path="D:\github\project\mnsfz\build\res\rs\debug" />

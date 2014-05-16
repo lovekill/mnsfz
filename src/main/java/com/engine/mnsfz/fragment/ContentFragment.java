@@ -4,16 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.engine.mnsfz.*;
+import com.engine.mnsfz.fragment.ui.PullToRefreshStaggeredView;
 import com.engine.mnsfz.greendao.ImageBean;
+import com.engine.mnsfz.greendao.ImageBeanDao;
 import com.engine.mnsfz.jsoup.ImageType;
 import com.engine.mnsfz.jsoup.NetFech;
 import com.engine.mnsfz.jsoup.Page;
@@ -21,10 +19,11 @@ import com.engine.mnsfz.util.ImageCache;
 import com.engine.mnsfz.util.ImageFetcher;
 import com.engine.mnsfz.util.LogUtil;
 import com.etsy.android.grid.StaggeredGridView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by USER on 2014/5/10.
@@ -38,10 +37,10 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
     private int mImageThumbSize;
     private int mImageThumbSpacing;
     private ImageFetcher mImageFetcher;
-    private StaggeredGridView gridView ;
+    private PullToRefreshStaggeredView gridView ;
     private GridAdapter mAdapter;
-//    private ViewPager mPager;
     public static final String EXTRA_IMAGE = "extra_image";
+    private  List<ImageBean> imageBeans = new ArrayList<ImageBean>() ;
 
     List<Page> list = null;
     private ImageView backBtn;
@@ -52,7 +51,7 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case GET_PAGE:
-//                    initAdapter1();
+                    initAdapter1();
                     break;
                 case IO_EXCEPTION:
                     Toast.makeText(getActivity(), getString(R.string.net_error), Toast.LENGTH_SHORT).show();
@@ -78,14 +77,26 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         backBtn = (ImageView) view.findViewById(R.id.back);
         backBtn.setOnClickListener(this);
         titleText = (TextView) view.findViewById(R.id.titleText);
-        gridView = (StaggeredGridView) view.findViewById(R.id.grid_view);
-        gridView.setOnItemClickListener(this);
+        gridView = (PullToRefreshStaggeredView) view.findViewById(R.id.grid_view);
+        gridView.getRefreshableView().setOnItemClickListener(this);
+        gridView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<StaggeredGridView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<StaggeredGridView> refreshView) {
+                fechData(3);
+                gridView.onRefreshComplete();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<StaggeredGridView> refreshView) {
+                nextPage();
+            }
+        });
         ((IndexActivity)getActivity()).setFragment(this);
         initImageFech();
         initAdapter1();
        fechData(3);
-        fechData(1);
-        fechData(2);
+//        fechData(1);
+//        fechData(2);
 
     }
     public void fechData(int i){
@@ -119,10 +130,11 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         mImageFetcher.addImageCache(getActivity().getSupportFragmentManager(), cacheParams);
     }
     private  void initAdapter1(){
-        List<ImageBean> imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().list();
+        LogUtil.e(ContentFragment.class,"initAdapter");
+        imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().orderDesc(ImageBeanDao.Properties.Time).limit(10).list();
         if(imageBeans!=null&&imageBeans.size()>0) {
             mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
-            gridView.setAdapter(mAdapter);
+            gridView.getRefreshableView().setAdapter(mAdapter);
         }
     }
     private void asyPageList() {
@@ -131,6 +143,9 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
             public void run() {
                 try {
                     list = fech.getPage();
+                    for (int i = 0; i < list.size(); i++) {
+                        fech.getModelIndexImage(list.get(i).getHref()) ;
+                    }
                     sendMessage(GET_PAGE,null);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -144,13 +159,20 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         ((IndexActivity)getActivity()).showMenu();
     }
 
+    private void nextPage(){
+        List<ImageBean> l= DaoManager.getDaoSession().getImageBeanDao().queryBuilder().orderDesc(ImageBeanDao.Properties.Time).offset(imageBeans.size()).limit(10).list();
+        if(l!=null&&l.size()>0) {
+            imageBeans.addAll(l);
+            gridView.onRefreshComplete();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         String url = mAdapter.getItem(i).getHref();
         Intent intent = new Intent(getActivity(), ImageDetailActivity.class);
         intent.putExtra("srcUrl", url);
-        intent.putExtra("type",Integer.parseInt(fech.getmType().toString())) ;
         intent.putExtra("title",mAdapter.getItem(i).getTitle()) ;
         getActivity().startActivity(intent);
     }
