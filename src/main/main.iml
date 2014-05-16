@@ -11,8 +11,18 @@
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/java" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< HEAD
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../libs" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../../libs" recursive="false" />
+=======
     <orderEntry type="library" name="libs" level="project" />
     <orderEntry type="module-library">
       <library>
@@ -21,6 +31,7 @@
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+>>>>>>> b2726ae215183b4e84a074f89d8a3adf1aad13c5
       </library>
     </orderEntry>
   </component>
