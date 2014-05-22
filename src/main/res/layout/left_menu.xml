@@ -6,10 +6,4 @@
               android:layout_height="match_parent">
     <Button android:id="@+id/getscore" android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="获取积分"/>
-    <Button android:id="@+id/qiaopi" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="俏皮女孩"/>
-    <Button android:id="@+id/sunline" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="阳光女孩 "/>
-    <Button android:id="@+id/qingchun" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="清纯女孩"/>
 </LinearLayout>

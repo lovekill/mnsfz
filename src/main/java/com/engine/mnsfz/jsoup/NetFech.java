@@ -1,13 +1,10 @@
 package com.engine.mnsfz.jsoup;
 
-<<<<<<< HEAD
 import com.engine.mnsfz.greendao.DaoMaster;
 import com.engine.mnsfz.greendao.PersonImage;
-=======
 import com.engine.mnsfz.DaoManager;
 import com.engine.mnsfz.greendao.ImageBean;
 import com.engine.mnsfz.greendao.ImageBeanDao;
->>>>>>> b2726ae215183b4e84a074f89d8a3adf1aad13c5
 import com.engine.mnsfz.util.LogUtil;
 
 import de.greenrobot.dao.query.WhereCondition;
@@ -95,7 +92,6 @@ public class NetFech {
                 imageBeans.add(imageBean);
             }
         }
-<<<<<<< HEAD
         List<PersonImage> l = new ArrayList<PersonImage>() ;
         for (int i = 0; i < list.size(); i++) {
             IndexBean bean = list.get(i) ;
@@ -106,9 +102,7 @@ public class NetFech {
             l.add(image) ;
         }
 
-=======
         DaoManager.getDaoSession().getImageBeanDao().insertOrReplaceInTx(imageBeans);
->>>>>>> b2726ae215183b4e84a074f89d8a3adf1aad13c5
         return list;
     }
 }

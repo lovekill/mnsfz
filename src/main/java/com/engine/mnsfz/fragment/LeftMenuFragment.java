@@ -24,9 +24,6 @@ public class LeftMenuFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         getScoreBtn = (Button) view.findViewById(R.id.getscore);
         getScoreBtn.setOnClickListener(onClickListener);
-        view.findViewById(R.id.qiaopi).setOnClickListener(onClickListener);
-        view.findViewById(R.id.sunline).setOnClickListener(onClickListener);
-        view.findViewById(R.id.qingchun).setOnClickListener(onClickListener);
     }
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -34,15 +31,6 @@ public class LeftMenuFragment extends BaseFragment {
             switch (v.getId()){
                 case R.id.getscore:
                     AppConnect.getInstance(getActivity()).showOffers(getActivity());
-                    break;
-                case R.id.qiaopi:
-                    ((IndexActivity) getActivity()).getQiaoPi();
-                    break;
-                case R.id.sunline:
-                    ((IndexActivity) getActivity()).getSunline();
-                   break;
-                case R.id.qingchun:
-                    ((IndexActivity) getActivity()).getQingchun();
                     break;
             }
 
