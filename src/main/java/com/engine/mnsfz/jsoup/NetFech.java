@@ -69,7 +69,7 @@ public class NetFech {
     public List<IndexBean> getModelIndexImage(String indexUrl) throws IOException {
 //        String modelUrl = modelMap.get(mType);
         LogUtil.e(getClass(), "getModelIndexImage-->" + baseUrl +"/"+ indexUrl);
-        Document doc = Jsoup.connect(baseUrl + indexUrl).get();
+        Document doc = Jsoup.connect(baseUrl +"/"+ indexUrl).get();
         Elements baseElement = doc.select(".p_box .c_inner").eq(1);
         Elements imageLiElement = baseElement.select(".pic li a");
         List<IndexBean> list = new ArrayList<IndexBean>();
