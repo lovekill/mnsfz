@@ -26,7 +26,8 @@ public class ImageBeanDao extends AbstractDao<ImageBean, String> {
         public final static Property Title = new Property(0, String.class, "title", false, "TITLE");
         public final static Property Href = new Property(1, String.class, "href", true, "HREF");
         public final static Property Src = new Property(2, String.class, "src", false, "SRC");
-        public final static Property Time = new Property(3, Long.class, "time", false, "TIME");
+        public final static Property Love = new Property(3, Boolean.class, "love", false, "LOVE");
+        public final static Property Time = new Property(4, Long.class, "time", false, "TIME");
     };
 
 
@@ -45,7 +46,8 @@ public class ImageBeanDao extends AbstractDao<ImageBean, String> {
                 "'TITLE' TEXT," + // 0: title
                 "'HREF' TEXT PRIMARY KEY NOT NULL ," + // 1: href
                 "'SRC' TEXT," + // 2: src
-                "'TIME' INTEGER);"); // 3: time
+                "'LOVE' INTEGER," + // 3: love
+                "'TIME' INTEGER);"); // 4: time
     }
 
     /** Drops the underlying database table. */
@@ -74,9 +76,14 @@ public class ImageBeanDao extends AbstractDao<ImageBean, String> {
             stmt.bindString(3, src);
         }
  
+        Boolean love = entity.getLove();
+        if (love != null) {
+            stmt.bindLong(4, love ? 1l: 0l);
+        }
+ 
         Long time = entity.getTime();
         if (time != null) {
-            stmt.bindLong(4, time);
+            stmt.bindLong(5, time);
         }
     }
 
@@ -93,7 +100,8 @@ public class ImageBeanDao extends AbstractDao<ImageBean, String> {
             cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // title
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // href
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // src
-            cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3) // time
+            cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0, // love
+            cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4) // time
         );
         return entity;
     }
@@ -104,7 +112,8 @@ public class ImageBeanDao extends AbstractDao<ImageBean, String> {
         entity.setTitle(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
         entity.setHref(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setSrc(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setTime(cursor.isNull(offset + 3) ? null : cursor.getLong(offset + 3));
+        entity.setLove(cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0);
+        entity.setTime(cursor.isNull(offset + 4) ? null : cursor.getLong(offset + 4));
      }
     
     /** @inheritdoc */

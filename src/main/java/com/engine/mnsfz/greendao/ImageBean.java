@@ -9,6 +9,7 @@ public class ImageBean {
     private String title;
     private String href;
     private String src;
+    private Boolean love;
     private Long time;
 
     public ImageBean() {
@@ -18,10 +19,11 @@ public class ImageBean {
         this.href = href;
     }
 
-    public ImageBean(String title, String href, String src, Long time) {
+    public ImageBean(String title, String href, String src, Boolean love, Long time) {
         this.title = title;
         this.href = href;
         this.src = src;
+        this.love = love;
         this.time = time;
     }
 
@@ -47,6 +49,14 @@ public class ImageBean {
 
     public void setSrc(String src) {
         this.src = src;
+    }
+
+    public Boolean getLove() {
+        return love;
+    }
+
+    public void setLove(Boolean love) {
+        this.love = love;
     }
 
     public Long getTime() {

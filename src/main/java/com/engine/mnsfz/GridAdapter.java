@@ -5,6 +5,8 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,7 +39,7 @@ public class GridAdapter extends EngineAdapter<ImageBean> {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         if(view==null){
            view= LayoutInflater.from(mContext).inflate(R.layout.grid_image_item,null) ;
         }
@@ -48,6 +50,20 @@ public class GridAdapter extends EngineAdapter<ImageBean> {
         text.setText(getItem(i).getTitle());
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         mImageFetcher.loadImage(getItem(i).getSrc(),imageView);
+        CheckBox checkBox = (CheckBox) view.findViewById(R.id.love);
+        if(getItem(i).getLove()){
+            checkBox.setChecked(true);
+        }else{
+            checkBox.setChecked(false);
+        }
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ImageBean bean = getItem(i) ;
+                bean.setLove(isChecked);
+                DaoManager.getDaoSession().getImageBeanDao().insertOrReplace(bean);
+            }
+        });
         return view;
     }
     private double getRandomHeightRatio() {
