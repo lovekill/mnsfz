@@ -50,18 +50,23 @@ public class GridAdapter extends EngineAdapter<ImageBean> {
         text.setText(getItem(i).getTitle());
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         mImageFetcher.loadImage(getItem(i).getSrc(),imageView);
-        CheckBox checkBox = (CheckBox) view.findViewById(R.id.love);
+        final ImageView checkBox = (ImageView) view.findViewById(R.id.love);
         if(getItem(i).getLove()){
-            checkBox.setChecked(true);
+            checkBox.setImageResource(R.drawable.ic_flow_cell_favor_selected_normal);
         }else{
-            checkBox.setChecked(false);
+            checkBox.setImageResource(R.drawable.ic_action_favor_normal);
         }
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        view.findViewById(R.id.loveLayout).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
                 ImageBean bean = getItem(i) ;
-                bean.setLove(isChecked);
-                DaoManager.getDaoSession().getImageBeanDao().insertOrReplace(bean);
+                bean.setLove(!bean.getLove());
+                if(bean.getLove()){
+                    checkBox.setImageResource(R.drawable.ic_flow_cell_favor_selected_normal);
+                }else{
+                    checkBox.setImageResource(R.drawable.ic_action_favor_normal);
+                }
+                DaoManager.getDaoSession().getImageBeanDao().insertOrReplace(bean) ;
             }
         });
         return view;

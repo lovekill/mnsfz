@@ -89,6 +89,7 @@ public class NetFech {
                 imageBean.setSrc(bean.getSrc());
                 imageBean.setTitle(bean.getTitle());
                 imageBean.setTime(System.currentTimeMillis());
+                imageBean.setLove(false);
                 imageBeans.add(imageBean);
             }
         }

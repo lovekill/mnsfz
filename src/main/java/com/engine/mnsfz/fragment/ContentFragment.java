@@ -20,6 +20,7 @@ import com.engine.mnsfz.util.ImageFetcher;
 import com.engine.mnsfz.util.LogUtil;
 import com.etsy.android.grid.StaggeredGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import de.greenrobot.dao.query.WhereCondition;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
     private GridAdapter mAdapter;
     public static final String EXTRA_IMAGE = "extra_image";
     private  List<ImageBean> imageBeans = new ArrayList<ImageBean>() ;
-
+    private  Status currentStatus = Status.All ;
     List<Page> list = null;
     private ImageView backBtn;
     private TextView titleText;
@@ -64,6 +65,9 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         return fech;
     }
 
+    enum  Status{
+        All,CLLOECT
+    }
 
 
     @Override
@@ -82,13 +86,22 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         gridView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<StaggeredGridView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<StaggeredGridView> refreshView) {
-                fechData(3);
+                if(currentStatus==Status.All) {
+                    fechData(3);
+                }else {
+                    showCollecttor();
+                }
                 gridView.onRefreshComplete();
             }
 
             @Override
             public void onPullUpToRefresh(PullToRefreshBase<StaggeredGridView> refreshView) {
-                nextPage();
+                if (currentStatus==Status.All) {
+                    nextPage();
+                }else {
+                    nextCllocte();
+                    gridView.onRefreshComplete();
+                }
             }
         });
         ((IndexActivity)getActivity()).setFragment(this);
@@ -130,13 +143,27 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
         mImageFetcher.addImageCache(getActivity().getSupportFragmentManager(), cacheParams);
     }
     private  void initAdapter1(){
-        LogUtil.e(ContentFragment.class,"initAdapter");
+        if(currentStatus==Status.CLLOECT) return;
         imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().orderDesc(ImageBeanDao.Properties.Time).limit(10).list();
         if(imageBeans!=null&&imageBeans.size()>0) {
             mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
             gridView.getRefreshableView().setAdapter(mAdapter);
         }
     }
+
+    public void showAll(){
+        currentStatus=Status.All ;
+        initAdapter1();
+    }
+
+   public  void showCollecttor(){
+       currentStatus = Status.CLLOECT ;
+        WhereCondition condition = ImageBeanDao.Properties.Love.eq(true) ;
+       imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().where(condition).orderDesc(ImageBeanDao.Properties.Time).limit(10).list();
+           mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
+           gridView.getRefreshableView().setAdapter(mAdapter);
+   }
+
     private void asyPageList() {
         new Thread() {
             @Override
@@ -161,6 +188,16 @@ public class ContentFragment extends BaseFragment implements View.OnClickListene
 
     private void nextPage(){
         List<ImageBean> l= DaoManager.getDaoSession().getImageBeanDao().queryBuilder().orderDesc(ImageBeanDao.Properties.Time).offset(imageBeans.size()).limit(10).list();
+        if(l!=null&&l.size()>0) {
+            imageBeans.addAll(l);
+            gridView.onRefreshComplete();
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void nextCllocte(){
+        WhereCondition condition = ImageBeanDao.Properties.Love.eq(true) ;
+        List<ImageBean> l= DaoManager.getDaoSession().getImageBeanDao().queryBuilder().where(condition).orderDesc(ImageBeanDao.Properties.Time).offset(imageBeans.size()).limit(10).list();
         if(l!=null&&l.size()>0) {
             imageBeans.addAll(l);
             gridView.onRefreshComplete();

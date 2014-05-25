@@ -13,7 +13,9 @@ import com.engine.mnsfz.R;
  * Created by USER on 2014/5/10.
  */
 public class LeftMenuFragment extends BaseFragment {
-    private Button getScoreBtn ;
+    private View getScoreBtn ;
+    private View allBtn;
+    private View cllectBtn ;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.left_menu,container,false) ;
@@ -22,7 +24,10 @@ public class LeftMenuFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getScoreBtn = (Button) view.findViewById(R.id.getscore);
+        getScoreBtn =  view.findViewById(R.id.getscore);
+        allBtn = view.findViewById(R.id.all) ;
+        view.findViewById(R.id.love).setOnClickListener(onClickListener);
+        allBtn.setOnClickListener(onClickListener);
         getScoreBtn.setOnClickListener(onClickListener);
     }
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -31,6 +36,12 @@ public class LeftMenuFragment extends BaseFragment {
             switch (v.getId()){
                 case R.id.getscore:
                     AppConnect.getInstance(getActivity()).showOffers(getActivity());
+                    break;
+                case R.id.all:
+                    ((IndexActivity)getActivity()).showAll();
+                    break ;
+                case R.id.love:
+                    ((IndexActivity)getActivity()).showCollect();
                     break;
             }
 

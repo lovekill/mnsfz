@@ -43,31 +43,16 @@ public class IndexActivity extends FragmentActivity {
         super.onDestroy();
         AppConnect.getInstance(this).close();
     }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.index, menu);
-        return true;
-    }
-
-    public void getQiaoPi() {
-        menu.showContent();
-        fragment.fechData(3);
-    }
-    public void getSunline(){
-        menu.showContent();
-        fragment.fechData(1);
-    }
-
-    public void getQingchun(){
-        menu.showContent();
-        fragment.fechData(2);
-    }
-
     public void showMenu(){
         menu.showMenu();
     }
 
+    public void showCollect(){
+        fragment.showCollecttor();
+        menu.showContent();
+    }
+    public void showAll(){
+        fragment.showAll();
+        menu.showContent();
+    }
 }

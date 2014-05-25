@@ -18,8 +18,8 @@ document.getElementById(id+'Link').style.display = 'none';
 <body>
 <h1>Lint Report</h1>
 <div class="titleSeparator"></div>
-Check performed at Fri May 16 14:10:18 CST 2014.<br/>
-5 errors and 41 warnings found:<br/><br/>
+Check performed at Sun May 25 16:28:22 CST 2014.<br/>
+5 errors and 47 warnings found:<br/><br/>
 <table class="overview">
 <tr><td></td><td class="categoryColumn"><a href="#Correctness">Correctness</a>
 </td></tr>
@@ -32,7 +32,11 @@ Check performed at Fri May 16 14:10:18 CST 2014.<br/>
 <a href="#MissingRegistered">MissingRegistered: Missing registered class</a>
 </td></tr>
 <tr>
-<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
+<td class="countColumn">2</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<a href="#InlinedApi">InlinedApi: Using inlined constants on older versions</a>
+</td></tr>
+<tr>
+<td class="countColumn">2</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
 <a href="#NewApi">NewApi: Calling new methods on older versions</a>
 </td></tr>
 <tr>
@@ -42,10 +46,6 @@ Check performed at Fri May 16 14:10:18 CST 2014.<br/>
 <tr>
 <td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#UnusedAttribute">UnusedAttribute: Attribute unused on older versions</a>
-</td></tr>
-<tr>
-<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
-<a href="#ValidFragment">ValidFragment: Fragment not instantiatable</a>
 </td></tr>
 <tr>
 <td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-error.png" alt="Error" />
@@ -64,10 +64,6 @@ Check performed at Fri May 16 14:10:18 CST 2014.<br/>
 <a href="#MissingId">MissingId: Fragments should specify an <code>id</code> or <code>tag</code></a>
 </td></tr>
 <tr>
-<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
-<a href="#GradleDependency">GradleDependency: Obsolete Gradle Dependency</a>
-</td></tr>
-<tr>
 <td class="countColumn">2</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#GradleOverrides">GradleOverrides: Value overridden by Gradle build script</a>
 </td></tr>
@@ -82,7 +78,7 @@ Check performed at Fri May 16 14:10:18 CST 2014.<br/>
 <a href="#ObsoleteLayoutParam">ObsoleteLayoutParam: Obsolete layout params</a>
 </td></tr>
 <tr>
-<td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<td class="countColumn">2</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#HandlerLeak">HandlerLeak: Handler reference leaks</a>
 </td></tr>
 <tr>
@@ -90,11 +86,15 @@ Check performed at Fri May 16 14:10:18 CST 2014.<br/>
 <a href="#UseSparseArrays">UseSparseArrays: HashMap can be replaced with SparseArray</a>
 </td></tr>
 <tr>
-<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#FloatMath">FloatMath: Using <code>FloatMath</code> instead of <code>Math</code></a>
 </td></tr>
 <tr>
-<td class="countColumn">7</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<a href="#Overdraw">Overdraw: Overdraw: Painting regions more than once</a>
+</td></tr>
+<tr>
+<td class="countColumn">10</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#UnusedResources">UnusedResources: Unused resources</a>
 </td></tr>
 <tr>
@@ -111,16 +111,22 @@ Check performed at Fri May 16 14:10:18 CST 2014.<br/>
 <td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#IconDensities">IconDensities: Icon densities validation</a>
 </td></tr>
+<tr><td></td><td class="categoryColumn"><a href="#Usability">Usability</a>
+</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<a href="#ViewConstructor">ViewConstructor: Missing View constructors for XML inflation</a>
+</td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
 </td></tr>
 <tr>
-<td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<td class="countColumn">6</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#ContentDescription">ContentDescription: Image without <code>contentDescription</code></a>
 </td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
 </td></tr>
 <tr>
-<td class="countColumn">7</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
+<td class="countColumn">3</td><td class="issueColumn"><img border="0" align="top" src="lint-results_files/lint-warning.png" alt="Warning" />
 <a href="#HardcodedText">HardcodedText: Hardcoded text</a>
 </td></tr>
 <tr><td></td><td class="categoryColumn"><a href="#MissingIssues">Disabled Checks (13)</a>
@@ -160,8 +166,8 @@ In Gradle projects, the actual package used in the final APK can vary; for you c
 <span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:28</span>: <span class="message">Class referenced in the manifest, cn.waps.OffersWebView, was not found in the project or the libraries</span><br /><pre class="errorlines">
 <span class="lineno">  25</span>             &lt;/intent-filter>
 <span class="lineno">  26</span>         &lt;/activity>
-<span class="lineno">  27</span>         &lt;activity android:name=".ImageDetailActivity">&lt;/activity>
-<span class="lineno">  28</span>         <span class="errorspan">&lt;activity android:name="cn.waps.OffersWebView" android:configChanges="keyboardHidden|orientation" /></span>
+<span class="lineno">  27</span>         &lt;activity android:name=".ImageDetailActivity" android:screenOrientation="portrait">&lt;/activity>
+<span class="lineno">  28</span>         <span class="errorspan">&lt;activity android:name="cn.waps.OffersWebView" android:configChanges="keyboardHidden|orientation" android:screenOrientation="portrait" /></span>
 <span class="lineno">  29</span>         &lt;meta-data android:name="APP_ID" android:value="f18c367b4bfe1887abf3cc13c1bb43e8" />
 <span class="lineno">  30</span>         &lt;meta-data android:name="APP_PID" android:value="baidu" />
 </pre>
@@ -176,18 +182,63 @@ If a class is referenced in the manifest, it must also exist in the project (or 
 <br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">http://developer.android.com/guide/topics/manifest/manifest-intro.html</a>
 </div><br/>To suppress this error, use the issue id "MissingRegistered" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
 </div>
+<a name="InlinedApi"></a>
+<div class="issue">
+<div class="id"><a href="#" title="Return to top">InlinedApi: Using inlined constants on older versions</a><div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshBase.java">../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshBase.java</a>:975</span>: <span class="message">Field requires API level 11 (current min is 10): android.view.View#LAYER_TYPE_HARDWARE</span><br /><pre class="errorlines">
+<span class="lineno"> 972</span> 			 * all. We don't use them on the Header/Footer Views as they change
+<span class="lineno"> 973</span> 			 * often, which would negate any HW layer performance boost.
+<span class="lineno"> 974</span> 			 */
+<span class="lineno"> 975</span> 			ViewCompat.setLayerType(mRefreshableViewWrapper, value != 0 ? <span class="errorspan">View.LAYER_TYPE_HARDWARE</span>
+<span class="lineno"> 976</span> 					: View.LAYER_TYPE_NONE);
+<span class="lineno"> 977</span> 		}
+</pre>
+<span class="location"><a href="../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshBase.java">../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshBase.java</a>:976</span>: <span class="message">Field requires API level 11 (current min is 10): android.view.View#LAYER_TYPE_NONE</span><br /><pre class="errorlines">
+<span class="lineno"> 973</span> 			 * often, which would negate any HW layer performance boost.
+<span class="lineno"> 974</span> 			 */
+<span class="lineno"> 975</span> 			ViewCompat.setLayerType(mRefreshableViewWrapper, value != 0 ? View.LAYER_TYPE_HARDWARE
+<span class="lineno"> 976</span> 					: <span class="errorspan">View.LAYER_TYPE_NONE);</span>
+<span class="lineno"> 977</span> 		}
+<span class="lineno"> 978</span> 
+</pre>
+</div>
+<div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img alt="Fix" border="0" align="top" src="lint-results_files/lint-run.png" />
+<br>
+Priority: 6 / 10<br/>
+Category: Correctness</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Finds inlined fields that may or may not work on older platforms.</div>
+<div class="explanation">
+This check scans through all the Android API field references in the application and flags certain constants, such as static final integers and Strings, which were introduced in later versions. These will actually be copied into the class files rather than being referenced, which means that the value is available even when running on older devices. In some cases that's fine, and in other cases it can result in a runtime crash or incorrect behavior. It depends on the context, so consider the code carefully and device whether it's safe and can be suppressed or whether the code needs tbe guarded.<br/>
+<br/>
+If you really want to use this API and don't need to support older devices just set the <code>minSdkVersion</code> in your <code>AndroidManifest.xml</code> file.<br/>
+If your code is <b>deliberately</b> accessing newer APIs, and you have ensured (e.g. with conditional execution) that this code will only ever be called on a supported platform, then you can annotate your class or method with the <code>@TargetApi</code> annotation specifying the local minimum SDK to apply, such as <code>@TargetApi(11)</code>, such that this check considers 11 rather than your manifest file's minimum SDK as the required API level.<br/>
+
+</div>
+<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "InlinedApi" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
 <a name="NewApi"></a>
 <div class="issue">
 <div class="id"><a href="#" title="Return to top">NewApi: Calling new methods on older versions</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:126</span>: <span class="message">Call requires API level 11 (current min is 10): android.widget.AbsListView#setAdapter</span><br /><pre class="errorlines">
-<span class="lineno"> 123</span>         List&lt;ImageBean> imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().orderDesc(ImageBeanDao.Properties.Time).list();
-<span class="lineno"> 124</span>         if(imageBeans!=null&amp;&amp;imageBeans.size()>0) {
-<span class="lineno"> 125</span>             mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
-<span class="lineno"> 126</span>             gridView.<span class="errorspan">setAdapter(mAdapter);</span>
-<span class="lineno"> 127</span>         }
-<span class="lineno"> 128</span>     }
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:150</span>: <span class="message">Call requires API level 11 (current min is 10): android.widget.AbsListView#setAdapter</span><br /><pre class="errorlines">
+<span class="lineno"> 147</span>         imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().orderDesc(ImageBeanDao.Properties.Time).limit(10).list();
+<span class="lineno"> 148</span>         if(imageBeans!=null&amp;&amp;imageBeans.size()>0) {
+<span class="lineno"> 149</span>             mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
+<span class="lineno"> 150</span>             gridView.getRefreshableView().<span class="errorspan">setAdapter(mAdapter);</span>
+<span class="lineno"> 151</span>         }
+<span class="lineno"> 152</span>     }
+</pre>
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:164</span>: <span class="message">Call requires API level 11 (current min is 10): android.widget.AbsListView#setAdapter</span><br /><pre class="errorlines">
+<span class="lineno"> 161</span>         WhereCondition condition = ImageBeanDao.Properties.Love.eq(true) ;
+<span class="lineno"> 162</span>        imageBeans = DaoManager.getDaoSession().getImageBeanDao().queryBuilder().where(condition).orderDesc(ImageBeanDao.Properties.Time).limit(10).list();
+<span class="lineno"> 163</span>            mAdapter = new GridAdapter(getActivity(), imageBeans, mImageFetcher);
+<span class="lineno"> 164</span>            gridView.getRefreshableView().<span class="errorspan">setAdapter(mAdapter);</span>
+<span class="lineno"> 165</span>    }
+<span class="lineno"> 166</span> 
 </pre>
 </div>
 <div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img alt="Fix" border="0" align="top" src="lint-results_files/lint-run.png" />
@@ -214,8 +265,8 @@ Similarly, you can use tools:targetApi="11" in an XML file to indicate that the 
 </div>
 <div class="warningslist">
 <span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:7</span>: <span class="message">Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details.</span><br /><pre class="errorlines">
-<span class="lineno">   4</span>     android:versionCode="1"
-<span class="lineno">   5</span>     android:versionName="1.0" >
+<span class="lineno">   4</span>     android:versionCode="2"
+<span class="lineno">   5</span>     android:versionName="1.2.0" >
 <span class="lineno">   6</span> 
 <span class="lineno">   7</span>     <span class="errorspan">&lt;uses-sdk</span>
 <span class="lineno">   8</span>         android:minSdkVersion="7"
@@ -275,31 +326,6 @@ This is not an error; the application will simply ignore the attribute. However,
 </div>
 <br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "UnusedAttribute" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
 </div>
-<a name="ValidFragment"></a>
-<div class="issue">
-<div class="id"><a href="#" title="Return to top">ValidFragment: Fragment not instantiatable</a><div class="issueSeparator"></div>
-</div>
-<div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java">../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java</a>:85</span>: <span class="message">Avoid non-default constructors in fragments: use a default constructor plus Fragment#setArguments(Bundle) instead</span><br /><pre class="errorlines">
-<span class="lineno">  82</span>     public ImageGridFragment() {
-<span class="lineno">  83</span>     }
-<span class="lineno">  84</span> 
-<span class="lineno">  85</span> <span class="errorspan">    public ImageGridFragment(String pageUrl,NetFech fech) {</span>
-<span class="lineno">  86</span>         final Bundle args = new Bundle();
-<span class="lineno">  87</span>         args.putString(IMAGE_DATA_EXTRA, pageUrl);
-</pre>
-</div>
-<div class="metadata">Priority: 6 / 10<br/>
-Category: Correctness</div>
-Severity: <span class="error">Fatal</span><div class="summary">
-Explanation: Ensures that <code>Fragment</code> subclasses can be instantiated.</div>
-<div class="explanation">
-From the Fragment documentation:<br/>
-<b>Every</b> fragment must have an empty constructor, so it can be instantiated when restoring its activity's state. It is strongly recommended that subclasses do not have other constructors with parameters, since these constructors will not be called when the fragment is re-instantiated; instead, arguments can be supplied by the caller with <code>setArguments(Bundle)</code> and later retrieved by the Fragment with <code>getArguments()</code>.
-</div>
-<br/><div class="moreinfo">More info: <a href="http://developer.android.com/reference/android/app/Fragment.html#Fragment()">http://developer.android.com/reference/android/app/Fragment.html#Fragment()</a>
-</div><br/>To suppress this error, use the issue id "ValidFragment" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-</div>
 <a name="WrongCall"></a>
 <div class="issue">
 <div class="id"><a href="#" title="Return to top">WrongCall: Using wrong draw/layout method</a><div class="issueSeparator"></div>
@@ -328,13 +354,13 @@ Custom views typically need to call <code>measure()</code> on their children, no
 <div class="id"><a href="#" title="Return to top">InflateParams: Layout Inflation without a Parent</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/GridAdapter.java">../src/main/java/com/engine/mnsfz/GridAdapter.java</a>:43</span>: <span class="message">Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element)</span><br /><pre class="errorlines">
-<span class="lineno">  40</span>     public View getView(int i, View view, ViewGroup viewGroup) {
-<span class="lineno">  41</span>         LogUtil.e(getClass(),"getView-->"+i+"===>"+getCount());
-<span class="lineno">  42</span>         if(view==null){
-<span class="lineno">  43</span>            view= LayoutInflater.from(mContext).inflate(R.layout.grid_image_item,<span class="errorspan">null) ;</span>
-<span class="lineno">  44</span>         }
-<span class="lineno">  45</span>         double positionHeight = getPositionRatio(i);
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/GridAdapter.java">../src/main/java/com/engine/mnsfz/GridAdapter.java</a>:44</span>: <span class="message">Avoid passing null as the view root (needed to resolve layout parameters on the inflated layout's root element)</span><br /><pre class="errorlines">
+<span class="lineno">  41</span>     @Override
+<span class="lineno">  42</span>     public View getView(final int i, View view, ViewGroup viewGroup) {
+<span class="lineno">  43</span>         if(view==null){
+<span class="lineno">  44</span>            view= LayoutInflater.from(mContext).inflate(R.layout.grid_image_item,<span class="errorspan">null) ;</span>
+<span class="lineno">  45</span>         }
+<span class="lineno">  46</span>         double positionHeight = getPositionRatio(i);
 </pre>
 </div>
 <div class="metadata">Priority: 5 / 10<br/>
@@ -408,36 +434,13 @@ If you provide neither of the previous two, the system uses the ID of the contai
 <br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/components/fragments.html">http://developer.android.com/guide/components/fragments.html</a>
 </div><br/>To suppress this error, use the issue id "MissingId" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
 </div>
-<a name="GradleDependency"></a>
-<div class="issue">
-<div class="id"><a href="#" title="Return to top">GradleDependency: Obsolete Gradle Dependency</a><div class="issueSeparator"></div>
-</div>
-<div class="warningslist">
-<span class="location"><a href="../build.gradle">../build.gradle</a>:22</span>: <span class="message">Old buildToolsVersion; recommended version is 19.0.2 or later</span><br /><pre class="errorlines">
-<span class="lineno">  19</span> 
-<span class="lineno">  20</span> android {
-<span class="lineno">  21</span>     compileSdkVersion 19
-<span class="lineno">  22</span>     <span class="errorspan">buildToolsVersion "19.0.0"</span>
-<span class="lineno">  23</span> 
-<span class="lineno">  24</span>     defaultConfig {
-</pre>
-</div>
-<div class="metadata">Priority: 4 / 10<br/>
-Category: Correctness</div>
-Severity: <span class="warning">Warning</span><div class="summary">
-Explanation: Looks for old or obsolete Gradle library dependencies.</div>
-<div class="explanation">
-This detector looks for usages of libraries where the version you are using is not the current stable release. Using older versions is fine, and there are cases where you deliberately want to stick with an older version. However, you may simply not be aware that a more recent version is available, and that is what this lint check helps find.
-</div>
-<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "GradleDependency" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
-</div>
 <a name="GradleOverrides"></a>
 <div class="issue">
 <div class="id"><a href="#" title="Return to top">GradleOverrides: Value overridden by Gradle build script</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
 <span class="location"><a href="../src/main/AndroidManifest.xml">../src/main/AndroidManifest.xml</a>:8</span>: <span class="message">This minSdkVersion value (7) is not used; it is always overridden by the value specified in the Gradle build script (10)</span><br /><pre class="errorlines">
-<span class="lineno">   5</span>     android:versionName="1.0" >
+<span class="lineno">   5</span>     android:versionName="1.2.0" >
 <span class="lineno">   6</span> 
 <span class="lineno">   7</span>     &lt;uses-sdk
 <span class="lineno">   8</span>         <span class="errorspan">android:minSdkVersion="7"</span>
@@ -505,13 +508,13 @@ There <b>are</b> cases where you might need to use <code>dp</code>; typically th
 <div class="id"><a href="#" title="Return to top">ObsoleteLayoutParam: Obsolete layout params</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/res/layout/grid_image_item.xml">../src/main/res/layout/grid_image_item.xml</a>:21</span>: <span class="message">Invalid layout param in a LinearLayout: layout_centerHorizontal</span><br /><pre class="errorlines">
-<span class="lineno">  18</span>             android:layout_width="match_parent"
-<span class="lineno">  19</span>             android:ellipsize="end"
-<span class="lineno">  20</span>             style="@style/text_name"
-<span class="lineno">  21</span>             <span class="errorspan">android:layout_centerHorizontal="true"</span>
-<span class="lineno">  22</span>             >&lt;/TextView>
-<span class="lineno">  23</span> &lt;/LinearLayout>
+<span class="location"><a href="../src/main/res/layout/grid_image_item.xml">../src/main/res/layout/grid_image_item.xml</a>:31</span>: <span class="message">Invalid layout param in a LinearLayout: layout_centerHorizontal</span><br /><pre class="errorlines">
+<span class="lineno">  28</span>             android:layout_width="wrap_content"
+<span class="lineno">  29</span>             android:ellipsize="end"
+<span class="lineno">  30</span>             style="@style/text_name"
+<span class="lineno">  31</span>             <span class="errorspan">android:layout_centerHorizontal="true"</span>
+<span class="lineno">  32</span>             >&lt;/TextView>&lt;/LinearLayout>
+<span class="lineno">  33</span> &lt;/LinearLayout>
 </pre>
 </div>
 <div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img alt="Fix" border="0" align="top" src="lint-results_files/lint-run.png" />
@@ -530,13 +533,13 @@ The given layout_param is not defined for the given layout, meaning it has no ef
 <div class="id"><a href="#" title="Return to top">HandlerLeak: Handler reference leaks</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:51</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ContentFragment.1)</span><br /><pre class="errorlines">
-<span class="lineno">  48</span>     private ImageView backBtn;
-<span class="lineno">  49</span>     private TextView titleText;
-<span class="lineno">  50</span>     private NetFech fech;
-<span class="lineno">  51</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
-<span class="lineno">  52</span>         @Override
-<span class="lineno">  53</span>         public void handleMessage(Message msg) {
+<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java">../src/main/java/com/engine/mnsfz/fragment/ContentFragment.java</a>:50</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ContentFragment.1)</span><br /><pre class="errorlines">
+<span class="lineno">  47</span>     private ImageView backBtn;
+<span class="lineno">  48</span>     private TextView titleText;
+<span class="lineno">  49</span>     private NetFech fech;
+<span class="lineno">  50</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
+<span class="lineno">  51</span>         @Override
+<span class="lineno">  52</span>         public void handleMessage(Message msg) {
 </pre>
 <span class="location"><a href="../src/main/java/com/engine/mnsfz/ImageDetailActivity.java">../src/main/java/com/engine/mnsfz/ImageDetailActivity.java</a>:65</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.ImageDetailActivity.1)</span><br /><pre class="errorlines">
 <span class="lineno">  62</span>     private int type;
@@ -545,14 +548,6 @@ The given layout_param is not defined for the given layout, meaning it has no ef
 <span class="lineno">  65</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
 <span class="lineno">  66</span>         @Override
 <span class="lineno">  67</span>         public void handleMessage(Message msg) {
-</pre>
-<span class="location"><a href="../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java">../src/main/java/com/engine/mnsfz/fragment/ImageGridFragment.java</a>:68</span>: <span class="message">This Handler class should be static or leaks might occur (com.engine.mnsfz.fragment.ImageGridFragment.1)</span><br /><pre class="errorlines">
-<span class="lineno">  65</span>     private  String pageUrl ;
-<span class="lineno">  66</span>     private static final int GET_PAGE = 1;
-<span class="lineno">  67</span>     private static final int IO_EXCEPTION = 2;
-<span class="lineno">  68</span>     private Handler handler = new <span class="errorspan">Handler() {</span>
-<span class="lineno">  69</span>         @Override
-<span class="lineno">  70</span>         public void handleMessage(Message msg) {
 </pre>
 </div>
 <div class="metadata">Priority: 4 / 10<br/>
@@ -604,6 +599,22 @@ If you need to construct a <code>HashMap</code> because you need to call an API 
 <span class="lineno"> 304</span> 	}
 <span class="lineno"> 305</span> 
 </pre>
+<span class="location"><a href="../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshWebView.java">../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshWebView.java</a>:116</span>: <span class="message">Use java.lang.Math#floor instead of android.util.FloatMath#floor() since it is faster as of API 8</span><br /><pre class="errorlines">
+<span class="lineno"> 113</span> 
+<span class="lineno"> 114</span> 	@Override
+<span class="lineno"> 115</span> 	protected boolean isReadyForPullEnd() {
+<span class="lineno"> 116</span> 		float exactContentHeight = FloatMath.<span class="errorspan">floor(mRefreshableView.getContentHeight() * mRefreshableView.getScale());</span>
+<span class="lineno"> 117</span> 		return mRefreshableView.getScrollY() >= (exactContentHeight - mRefreshableView.getHeight());
+<span class="lineno"> 118</span> 	}
+</pre>
+<span class="location"><a href="../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshWebView.java">../src/main/java/com/handmark/pulltorefresh/library/PullToRefreshWebView.java</a>:162</span>: <span class="message">Use java.lang.Math#floor instead of android.util.FloatMath#floor() since it is faster as of API 8</span><br /><pre class="errorlines">
+<span class="lineno"> 159</span> 		}
+<span class="lineno"> 160</span> 
+<span class="lineno"> 161</span> 		private int getScrollRange() {
+<span class="lineno"> 162</span> 			return (int) Math.max(0, FloatMath.<span class="errorspan">floor(mRefreshableView.getContentHeight() * mRefreshableView.getScale())</span>
+<span class="lineno"> 163</span> 					- (getHeight() - getPaddingBottom() - getPaddingTop()));
+<span class="lineno"> 164</span> 		}
+</pre>
 </div>
 <div class="metadata">Priority: 3 / 10<br/>
 Category: Performance</div>
@@ -615,6 +626,36 @@ In older versions of Android, using <code>android.util.FloatMath</code> was reco
 <br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/practices/design/performance.html#avoidfloat">http://developer.android.com/guide/practices/design/performance.html#avoidfloat</a>
 </div><br/>To suppress this error, use the issue id "FloatMath" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
 </div>
+<a name="Overdraw"></a>
+<div class="issue">
+<div class="id"><a href="#" title="Return to top">Overdraw: Overdraw: Painting regions more than once</a><div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="../src/main/res/layout/left_menu.xml">../src/main/res/layout/left_menu.xml</a>:6</span>: <span class="message">Possible overdraw: Root element paints background @drawable/menu_bg with a theme that also paints a background (inferred theme is @style/AppTheme)</span><br /><pre class="errorlines">
+<span class="lineno">   3</span> &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<span class="lineno">   4</span>               android:orientation="vertical"
+<span class="lineno">   5</span>               android:layout_width="match_parent"
+<span class="lineno">   6</span>               <span class="errorspan">android:background="@drawable/menu_bg"</span>
+<span class="lineno">   7</span>               android:paddingTop="48dp"
+<span class="lineno">   8</span>               android:layout_height="match_parent">
+</pre>
+</div>
+<div class="metadata">Priority: 3 / 10<br/>
+Category: Performance</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Looks for overdraw issues (where a view is painted only to be fully painted over)</div>
+<div class="explanation">
+If you set a background drawable on a root view, then you should use a custom theme where the theme background is null. Otherwise, the theme background will be painted first, only to have your custom background completely cover it; this is called "overdraw".<br/>
+<br/>
+NOTE: This detector relies on figuring out which layouts are associated with which activities based on scanning the Java code, and it's currently doing that using an inexact pattern matching algorithm. Therefore, it can incorrectly conclude which activity the layout is associated with and then wrongly complain that a background-theme is hidden.<br/>
+<br/>
+If you want your custom background on multiple pages, then you should consider making a custom theme with your custom background and just using that theme instead of a root element background.<br/>
+<br/>
+Of course it's possible that your custom drawable is translucent and you want it to be mixed with the background. However, you will get better performance if you pre-mix the background with your drawable and use that resulting image or color as a custom theme background instead.<br/>
+
+</div>
+<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "Overdraw" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
 <a name="UnusedResources"></a>
 <div class="issue">
 <div class="id"><a href="#" title="Return to top">UnusedResources: Unused resources</a><div class="issueSeparator"></div>
@@ -624,7 +665,7 @@ In older versions of Android, using <code>android.util.FloatMath</code> was reco
 <span class="location"><a href="../src/main/res/values/dimens.xml">../src/main/res/values/dimens.xml</a>:10</span>: <span class="message">The resource R.dimen.list_padding appears to be unused</span><br /><pre class="errorlines">
 <span class="lineno">   7</span>     &lt;dimen name="image_detail_pager_margin">80dp&lt;/dimen>
 <span class="lineno">   8</span>     &lt;dimen name="image_size">400dp&lt;/dimen>
-<span class="lineno">   9</span>     &lt;dimen name="slidingmenu_offset">60dp&lt;/dimen>
+<span class="lineno">   9</span>     &lt;dimen name="slidingmenu_offset">200dp&lt;/dimen>
 <span class="lineno">  10</span>     &lt;dimen <span class="errorspan">name="list_padding">10dp&lt;/dimen></span>
 <span class="lineno">  11</span>     &lt;dimen name="shadow_width">15dp&lt;/dimen>
 <span class="lineno">  12</span> 
@@ -637,7 +678,12 @@ In older versions of Android, using <code>android.util.FloatMath</code> was reco
 <span class="lineno">  14</span> 
 <span class="lineno">  15</span> &lt;/resources>
 </pre>
+<span class="location"><a href="../src/main/res/layout/grid_layout.xml">../src/main/res/layout/grid_layout.xml</a></span>: <span class="message">The resource R.layout.grid_layout appears to be unused</span><br />
 <span class="location"><a href="../src/main/res/layout/image_detail_pager.xml">../src/main/res/layout/image_detail_pager.xml</a></span>: <span class="message">The resource R.layout.image_detail_pager appears to be unused</span><br />
+<button id="UnusedResourcesDivLink" onclick="reveal('UnusedResourcesDiv');" />+ 5 More Occurrences...</button>
+<div id="UnusedResourcesDiv" style="display: none">
+<span class="location"><a href="../src/main/res/menu/index.xml">../src/main/res/menu/index.xml</a></span>: <span class="message">The resource R.menu.index appears to be unused</span><br />
+<span class="location"><a href="../src/main/res/drawable/love_bg.xml">../src/main/res/drawable/love_bg.xml</a></span>: <span class="message">The resource R.drawable.love_bg appears to be unused</span><br />
 <span class="location"><a href="../src/main/res/layout/main_layout.xml">../src/main/res/layout/main_layout.xml</a></span>: <span class="message">The resource R.layout.main_layout appears to be unused</span><br />
 <span class="location"><a href="../src/main/res/drawable/more.xml">../src/main/res/drawable/more.xml</a></span>: <span class="message">The resource R.drawable.more appears to be unused</span><br />
 <span class="location"><a href="../src/main/res/values/strings.xml">../src/main/res/values/strings.xml</a>:8</span>: <span class="message">The resource R.string.hello_world appears to be unused</span><br /><pre class="errorlines">
@@ -648,6 +694,7 @@ In older versions of Android, using <code>android.util.FloatMath</code> was reco
 <span class="lineno">   9</span>     &lt;/string>
 <span class="lineno">  10</span>     &lt;string name="net_error">&#32593;&#32476;&#19981;&#21487;&#29992;!&lt;/string>
 </pre>
+</div>
 </div>
 <div class="metadata">Priority: 3 / 10<br/>
 Category: Performance</div>
@@ -711,9 +758,9 @@ The unique silhouette implies that your launcher icon should not be a filled squ
 <div class="id"><a href="#" title="Return to top">IconDensities: Icon densities validation</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/res/drawable-hdpi">../src/main/res/drawable-hdpi</a></span>: <span class="message">Missing the following drawables in drawable-hdpi: empty_photo.png (found in drawable-xhdpi)</span><br />
-<span class="location"><a href="../src/main/res/drawable-mdpi">../src/main/res/drawable-mdpi</a></span>: <span class="message">Missing the following drawables in drawable-mdpi: dropdown_disabled_holo_dark.9.png, dropdown_disabled_holo_light.9.png, empty_photo.png, ic_menu_back.png, ic_menu_back_on.png... (3 more)</span><br />
-<span class="location"><a href="../src/main/res/drawable-xhdpi">../src/main/res/drawable-xhdpi</a></span>: <span class="message">Missing the following drawables in drawable-xhdpi: dropdown_disabled_holo_dark.9.png, dropdown_disabled_holo_light.9.png, ic_menu_back.png, ic_menu_back_on.png, ic_menu_settings_holo_light.png... (2 more)</span><br />
+<span class="location"><a href="../src/main/res/drawable-hdpi">../src/main/res/drawable-hdpi</a></span>: <span class="message">Missing the following drawables in drawable-hdpi: empty_photo.png, menu_bg.png</span><br />
+<span class="location"><a href="../src/main/res/drawable-mdpi">../src/main/res/drawable-mdpi</a></span>: <span class="message">Missing the following drawables in drawable-mdpi: default_ptr_flip.png, default_ptr_rotate.png, dropdown_disabled_holo_dark.9.png, dropdown_disabled_holo_light.9.png, empty_photo.png... (9 more)</span><br />
+<span class="location"><a href="../src/main/res/drawable-xhdpi">../src/main/res/drawable-xhdpi</a></span>: <span class="message">Missing the following drawables in drawable-xhdpi: default_ptr_flip.png, default_ptr_rotate.png, dropdown_disabled_holo_dark.9.png, dropdown_disabled_holo_light.9.png, ic_action_favor_normal.png... (7 more)</span><br />
 </div>
 <div class="metadata">Priority: 4 / 10<br/>
 Category: Usability:Icons</div>
@@ -726,6 +773,31 @@ Low density is not really used much anymore, so this check ignores the ldpi dens
 </div>
 <br/><div class="moreinfo">More info: <a href="http://developer.android.com/guide/practices/screens_support.html">http://developer.android.com/guide/practices/screens_support.html</a>
 </div><br/>To suppress this error, use the issue id "IconDensities" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+</div>
+
+<a name="Usability"></a>
+<div class="category"><a href="#" title="Return to top">Usability</a><div class="categorySeparator"></div>
+</div>
+<a name="ViewConstructor"></a>
+<div class="issue">
+<div class="id"><a href="#" title="Return to top">ViewConstructor: Missing View constructors for XML inflation</a><div class="issueSeparator"></div>
+</div>
+<div class="warningslist">
+<span class="location"><a href="../src/main/java/com/handmark/pulltorefresh/library/internal/RotateLoadingLayout.java">../src/main/java/com/handmark/pulltorefresh/library/internal/RotateLoadingLayout.java</a></span>: <span class="message">Custom view com/handmark/pulltorefresh/library/internal/RotateLoadingLayout is missing constructor used by tools: (Context) or (Context,AttributeSet) or (Context,AttributeSet,int)</span><br />
+</div>
+<div class="metadata">Priority: 3 / 10<br/>
+Category: Usability</div>
+Severity: <span class="warning">Warning</span><div class="summary">
+Explanation: Checks that custom views define the expected constructors.</div>
+<div class="explanation">
+Some layout tools (such as the Android layout editor for Studio &amp; Eclipse) needs to find a constructor with one of the following signatures:<br/>
+* <code>View(Context context)</code><br/>
+* <code>View(Context context, AttributeSet attrs)</code><br/>
+* <code>View(Context context, AttributeSet attrs, int defStyle)</code><br/>
+<br/>
+If your custom view needs to perform initialization which does not apply when used in a layout editor, you can surround the given code with a check to see if <code>View#isInEditMode()</code> is false, since that method will return <code>false</code> at runtime but true within a user interface editor.
+</div>
+<br/><div class="moreinfo">More info: </div><br/>To suppress this error, use the issue id "ViewConstructor" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
 </div>
 
 <a name="Accessibility"></a>
@@ -752,6 +824,14 @@ Low density is not really used much anymore, so this check ignores the ldpi dens
 <span class="lineno">  30</span>                 android:layout_height="wrap_content"
 <span class="lineno">  31</span>                 android:id="@+id/back"
 </pre>
+<span class="location"><a href="../src/main/res/layout/grid_image_item.xml">../src/main/res/layout/grid_image_item.xml</a>:20</span>: <span class="message">[Accessibility] Missing contentDescription attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  17</span>             android:layout_width="match_parent"
+<span class="lineno">  18</span>             android:gravity="center_vertical"
+<span class="lineno">  19</span>             android:layout_height="wrap_content">
+<span class="lineno">  20</span>         <span class="errorspan">&lt;ImageView</span>
+<span class="lineno">  21</span>                 android:id="@+id/love"
+<span class="lineno">  22</span>                 android:layout_margin="3dp"
+</pre>
 <span class="location"><a href="../src/main/res/layout/image_detail_pager.xml">../src/main/res/layout/image_detail_pager.xml</a>:29</span>: <span class="message">[Accessibility] Missing contentDescription attribute on image</span><br /><pre class="errorlines">
 <span class="lineno">  26</span>             android:padding="10dp"
 <span class="lineno">  27</span>             android:layout_height="wrap_content">
@@ -759,6 +839,22 @@ Low density is not really used much anymore, so this check ignores the ldpi dens
 <span class="lineno">  29</span>         <span class="errorspan">&lt;ImageView</span>
 <span class="lineno">  30</span>                 android:layout_height="wrap_content"
 <span class="lineno">  31</span>                 android:id="@+id/back"
+</pre>
+<span class="location"><a href="../src/main/res/layout/pull_to_refresh_header_horizontal.xml">../src/main/res/layout/pull_to_refresh_header_horizontal.xml</a>:13</span>: <span class="message">[Accessibility] Missing contentDescription attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  10</span>         android:paddingRight="@dimen/header_footer_left_right_padding"
+<span class="lineno">  11</span>         android:paddingTop="@dimen/header_footer_top_bottom_padding" >
+<span class="lineno">  12</span> 
+<span class="lineno">  13</span>         <span class="errorspan">&lt;ImageView</span>
+<span class="lineno">  14</span>             android:id="@+id/pull_to_refresh_image"
+<span class="lineno">  15</span>             android:layout_width="wrap_content"
+</pre>
+<span class="location"><a href="../src/main/res/layout/pull_to_refresh_header_vertical.xml">../src/main/res/layout/pull_to_refresh_header_vertical.xml</a>:18</span>: <span class="message">[Accessibility] Missing contentDescription attribute on image</span><br /><pre class="errorlines">
+<span class="lineno">  15</span>             android:layout_height="wrap_content"
+<span class="lineno">  16</span>             android:layout_gravity="left|center_vertical" >
+<span class="lineno">  17</span> 
+<span class="lineno">  18</span>             <span class="errorspan">&lt;ImageView</span>
+<span class="lineno">  19</span>                 android:id="@+id/pull_to_refresh_image"
+<span class="lineno">  20</span>                 android:layout_width="wrap_content"
 </pre>
 </div>
 <div class="metadata">Note: This issue has an associated quickfix operation in Eclipse/ADT&nbsp;<img alt="Fix" border="0" align="top" src="lint-results_files/lint-run.png" />
@@ -785,38 +881,6 @@ Note that for text fields, you should not set both the <code>hint</code> and the
 <div class="id"><a href="#" title="Return to top">HardcodedText: Hardcoded text</a><div class="issueSeparator"></div>
 </div>
 <div class="warningslist">
-<span class="location"><a href="../src/main/res/layout/left_menu.xml">../src/main/res/layout/left_menu.xml</a>:8</span>: <span class="message">[I18N] Hardcoded string "&#33719;&#21462;&#31215;&#20998;", should use @string resource</span><br /><pre class="errorlines">
-<span class="lineno">   5</span>               android:layout_width="match_parent"
-<span class="lineno">   6</span>               android:layout_height="match_parent">
-<span class="lineno">   7</span>     &lt;Button android:id="@+id/getscore" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">   8</span>             <span class="errorspan">android:text="&#33719;&#21462;&#31215;&#20998;"/></span>
-<span class="lineno">   9</span>     &lt;Button android:id="@+id/qiaopi" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  10</span>             android:text="&#20431;&#30382;&#22899;&#23401;"/>
-</pre>
-<span class="location"><a href="../src/main/res/layout/left_menu.xml">../src/main/res/layout/left_menu.xml</a>:10</span>: <span class="message">[I18N] Hardcoded string "&#20431;&#30382;&#22899;&#23401;", should use @string resource</span><br /><pre class="errorlines">
-<span class="lineno">   7</span>     &lt;Button android:id="@+id/getscore" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">   8</span>             android:text="&#33719;&#21462;&#31215;&#20998;"/>
-<span class="lineno">   9</span>     &lt;Button android:id="@+id/qiaopi" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  10</span>             <span class="errorspan">android:text="&#20431;&#30382;&#22899;&#23401;"/></span>
-<span class="lineno">  11</span>     &lt;Button android:id="@+id/sunline" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  12</span>             android:text="&#38451;&#20809;&#22899;&#23401; "/>
-</pre>
-<span class="location"><a href="../src/main/res/layout/left_menu.xml">../src/main/res/layout/left_menu.xml</a>:12</span>: <span class="message">[I18N] Hardcoded string "&#38451;&#20809;&#22899;&#23401; ", should use @string resource</span><br /><pre class="errorlines">
-<span class="lineno">   9</span>     &lt;Button android:id="@+id/qiaopi" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  10</span>             android:text="&#20431;&#30382;&#22899;&#23401;"/>
-<span class="lineno">  11</span>     &lt;Button android:id="@+id/sunline" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  12</span>             <span class="errorspan">android:text="&#38451;&#20809;&#22899;&#23401; "/></span>
-<span class="lineno">  13</span>     &lt;Button android:id="@+id/qingchun" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  14</span>             android:text="&#28165;&#32431;&#22899;&#23401;"/>
-</pre>
-<span class="location"><a href="../src/main/res/layout/left_menu.xml">../src/main/res/layout/left_menu.xml</a>:14</span>: <span class="message">[I18N] Hardcoded string "&#28165;&#32431;&#22899;&#23401;", should use @string resource</span><br /><pre class="errorlines">
-<span class="lineno">  11</span>     &lt;Button android:id="@+id/sunline" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  12</span>             android:text="&#38451;&#20809;&#22899;&#23401; "/>
-<span class="lineno">  13</span>     &lt;Button android:id="@+id/qingchun" android:layout_width="wrap_content" android:layout_height="wrap_content"
-<span class="lineno">  14</span>             <span class="errorspan">android:text="&#28165;&#32431;&#22899;&#23401;"/></span>
-<span class="lineno">  15</span> &lt;/LinearLayout>
-
-</pre>
 <span class="location"><a href="../src/main/res/layout/main_layout.xml">../src/main/res/layout/main_layout.xml</a>:12</span>: <span class="message">[I18N] Hardcoded string "&#28165;&#32431;", should use @string resource</span><br /><pre class="errorlines">
 <span class="lineno">   9</span>     &lt;Button
 <span class="lineno">  10</span>             android:layout_width="match_parent"

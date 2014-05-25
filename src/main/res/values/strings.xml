@@ -10,4 +10,7 @@
     <string name="net_error">网络不可用!</string>
     <string name="mene_set_wall">设置为壁纸</string>
     <string name="title">美女私房照</string>
+    <string name="love">收藏</string>
+    <string name="all">全部</string>
+    <string name="help_me">更多乐趣</string>
 </resources>

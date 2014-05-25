@@ -13,8 +13,23 @@ group ="group"
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.0"
+    buildToolsVersion "19.0.3"
+     signingConfigs {
 
+        last{
+            storeFile file("engine.keystore")
+            storePassword "engine"
+            keyAlias "engine"
+            keyPassword "engine"
+        }
+    }
+     buildTypes {
+        last{
+            debuggable true
+            jniDebugBuild true
+            signingConfig signingConfigs.last
+        }
+    }
     defaultConfig {
         minSdkVersion 10
         targetSdkVersion 19

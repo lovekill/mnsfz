@@ -2,10 +2,10 @@
 <merger>
 
     <dataSet config="main" >
-        <source path="D:\github\project\mnsfz\src\main\assets" />
+        <source path="F:\android_project\mnsfz\src\main\assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="D:\github\project\mnsfz\src\debug\assets" />
+        <source path="F:\android_project\mnsfz\src\debug\assets" />
     </dataSet>
 
 </merger>

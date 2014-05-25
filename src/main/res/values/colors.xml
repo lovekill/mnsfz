@@ -22,4 +22,6 @@
     <color name="black">#000000</color>
     <color name="writer">#FFFFFF</color>
     <color name="text_bg">#8eBDBDBD</color>
+    <color name="menu_head">#AA7A7B</color>
+    <color name="white_tran">#16FFFFFF</color>
 </resources>

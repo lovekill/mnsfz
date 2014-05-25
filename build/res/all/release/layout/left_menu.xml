@@ -3,13 +3,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:background="@drawable/menu_bg"
+              android:paddingTop="48dp"
               android:layout_height="match_parent">
-    <Button android:id="@+id/getscore" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="获取积分"/>
-    <Button android:id="@+id/qiaopi" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="俏皮女孩"/>
-    <Button android:id="@+id/sunline" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="阳光女孩 "/>
-    <Button android:id="@+id/qingchun" android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:text="清纯女孩"/>
+    <TextView android:id="@+id/getscore"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+             style="@style/leftMenu"
+            android:text="@string/help_me"/>
+    <TextView android:id="@+id/all"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              style="@style/leftMenu"
+              android:text="@string/all"/>
+    <TextView android:id="@+id/love"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              style="@style/leftMenu"
+              android:text="@string/love"/>
 </LinearLayout>
